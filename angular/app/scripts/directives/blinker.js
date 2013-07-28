@@ -1,7 +1,7 @@
 var myModule = angular.module('indelibleApp');
 
 myModule.directive('blinker', function($timeout) {
-    return function(scope, elm, attrs) {
+    return function(scope, elm) {
         var timeoutId,
             shown = true;
 
