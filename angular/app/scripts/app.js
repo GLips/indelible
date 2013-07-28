@@ -7,10 +7,6 @@ angular.module('indelibleApp', [])
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
-            .when('/lol', {
-                templateUrl: 'views/lol.html',
-                controller: 'LolCtrl'
-            })
             .otherwise({
                 redirectTo: '/'
             });
