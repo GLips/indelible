@@ -1,8 +1,8 @@
 var myModule = angular.module('indelibleApp');
 
-myModule.directive('noBackspace', function() {
+myModule.directive('noBackspace', function($document) {
     return function(scope, elm, attrs) {
-        elm.bind('keydown', function(evt) {
+        $document.keydown(function(evt) {
             key = evt.which
             if(key == 8)
                 evt.preventDefault()
