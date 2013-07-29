@@ -1,6 +1,7 @@
 // Generated on 2013-07-27 using generator-angular 0.3.1
 'use strict';
 var LIVERELOAD_PORT = 35729;
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
@@ -63,6 +64,7 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
+              proxySnippet,
               lrSnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)
@@ -97,7 +99,7 @@ module.exports = function (grunt) {
           https: false,
           changeOrigin: false
         }
-      ],
+      ]
     },
     open: {
       server: {
@@ -333,6 +335,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'configureProxies',
       'connect:livereload',
       'open',
       'watch'

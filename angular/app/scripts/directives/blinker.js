@@ -31,5 +31,5 @@ myModule.directive('blinker', function($timeout) {
     });
 
     init();
-  }
+  };
 });

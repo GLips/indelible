@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('indelibleApp', [])
+angular.module('indelibleApp', ['ngResource'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
