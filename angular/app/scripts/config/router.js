@@ -8,6 +8,10 @@ App.config(function ($routeProvider) {
       templateUrl: 'views/users/new.html',
       controller: 'RegistrationsController'
     })
+    .when('/sign_in', {
+      templateUrl: 'views/sessions/new.html',
+      controller: 'SessionsController'
+    })
     .otherwise({
       redirectTo: '/'
     });

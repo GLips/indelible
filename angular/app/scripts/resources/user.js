@@ -6,7 +6,7 @@ angular.module('indelibleApp.resources').factory('UserSession', ['$http', functi
   };
 
   UserSession.prototype.$save = function() {
-    return $http.post('/users/sign_in', {
+    return $http.post(apiPrefix + '/users/sign_in.json', {
       "user" : {
         "email" : this.email,
         "password" : this.password,
@@ -16,7 +16,7 @@ angular.module('indelibleApp.resources').factory('UserSession', ['$http', functi
   };
 
   UserSession.prototype.$destroy = function() {
-    return $http.delete('/users/sign_out');
+    return $http.delete(apiPrefix + '/users/sign_out.json');
   };
 
   return UserSession;
@@ -31,7 +31,7 @@ angular.module('indelibleApp.resources').factory('UserRegistration', ['$http', f
   };
 
   UserRegistration.prototype.$save = function() {
-    return $http.post('/api/users.json', {
+    return $http.post(apiPrefix + '/users.json', {
       "user" : {
         "email" : this.email,
         "password" : this.password,
