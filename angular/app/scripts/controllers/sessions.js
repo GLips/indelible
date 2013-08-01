@@ -4,10 +4,11 @@ angular.module('indelibleApp.controllers').controller('SessionsController', ['$s
 
   $scope.create = function() {
 
-    if ( Session.signedOut ) {
+    if ( Session.loggedOut ) {
       $scope.session.$save()
         .success(function(data, status, headers, config) {
           $cookieStore.put('_indelible_session', data);
+          Session.currentUser = data;
         });
     }
 

@@ -26,7 +26,21 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <h1><a href="/">Indelible</a></h1>
+    <div class="container">
+      <h1><a href="/">Indelible</a></h1>
+      <div data-usercorner>
+        {{usercorner.content}}
+        <div data-ng-switch on="usercorner.loggedIn">
+          <ul data-ng-switch-when="false">
+            <li><a href="/log_in">Log in</a></li>
+            <li><a href="/register">Register</a></li>
+          </ul>
+          <ul data-ng-switch-when="true">
+            <li><a href="/log_out">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="container" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -74,6 +88,7 @@
         <script src="scripts/directives/textarea.js"></script>
         <script src="scripts/directives/backspace.js"></script>
         <script src="scripts/directives/blinker.js"></script>
+        <script src="scripts/directives/usercorner.js"></script>
         <script src="scripts/services/page.js"></script>
         <script src="scripts/services/session.js"></script>
         <script src="scripts/resources/user.js"></script>
