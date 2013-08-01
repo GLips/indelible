@@ -21,6 +21,7 @@ class Api::SessionsController < Devise::SessionsController
 		sign_out
 		cookies.delete(:_indelible_session)
 		reset_session
+		#cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
 		render json: { logged_out: true }
 	end
 end
