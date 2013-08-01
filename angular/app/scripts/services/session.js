@@ -6,4 +6,25 @@ angular.module('indelibleApp.services').service('Session',[ '$cookieStore', 'Use
   this.userSession = new UserSession( { email: "", password: "", remember_me: true } );
   this.userRegistration = new UserRegistration( { email: "", password: "", password_confirmation: "" } );
 
+  this.logout = function() {
+    this.currentUser = null;
+    this.loggedIn = false;
+    this.loggedOut = !this.loggedIn;
+    this.userSession = new UserSession( { email: "", password: "", remember_me: true } );
+  }
+
+  this.login = function(user) {
+    this.currentUser = user;
+    this.loggedIn = true;
+    this.loggedOut = !this.loggedIn;
+  }
+
+  this.getEmail = function() {
+    if(this.loggedIn) { return this.currentUser.email; }
+  }
+
+  this.isLoggedIn = function() {
+    return this.loggedIn;
+  }
+
 }]);
