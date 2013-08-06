@@ -2,8 +2,8 @@
 
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('MainCtrl', function ($scope, Page, Session) {
+myModule.controller('MainCtrl', function ($scope, Page, Flash) {
     $scope.content = '';
     $scope.pages = Page.query();
   });
-myModule.$inject = ['$scope', 'Page', 'Session'];
+myModule.$inject = ['$scope', 'Page', 'Flash'];

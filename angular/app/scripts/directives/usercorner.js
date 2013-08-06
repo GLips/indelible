@@ -6,15 +6,17 @@ myModule.directive('usercorner', function(Session, $location, $rootScope) {
     return function($scope) {
       $scope.session = Session;
 
-      if($scope.session.loggedIn)
-      {
-        var email = $scope.session.getEmail();
-        $scope.content = "Welcome, " + email.substr(0, email.indexOf('@'));
-      }
-      else
-      {
-        $scope.content = "";
-      }
+      $scope.$watch('session.loggedIn', function() {
+        if($scope.session.loggedIn)
+        {
+          var email = $scope.session.getEmail();
+          $scope.content = "Welcome, " + email.substr(0, email.indexOf('@'));
+        }
+        else
+        {
+          $scope.content = "";
+        }
+      });
 
       $scope.destroy = function() {
         $scope.session.userSession.$destroy()
@@ -23,10 +25,6 @@ myModule.directive('usercorner', function(Session, $location, $rootScope) {
             {
               Session.logout();
               $location.path('/');
-            }
-            else
-            {
-              $rootScope.flashes = { errors: ['There was an issue logging out, try again.'] };
             }
           });
       };

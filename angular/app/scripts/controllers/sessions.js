@@ -1,4 +1,6 @@
-angular.module('indelibleApp.controllers').controller('SessionsController', ['$scope', '$rootScope', '$location', '$cookieStore', 'Session', function($scope, $rootScope, $location, $cookieStore, Session) {
+var myModule = angular.module('indelibleApp.controllers');
+
+myModule.controller('SessionsController', function($scope, Flash, $location, $cookieStore, Session) {
 
   $scope.session = Session.userSession;
 
@@ -7,20 +9,17 @@ angular.module('indelibleApp.controllers').controller('SessionsController', ['$s
     if ( Session.loggedOut ) {
       $scope.session.$save()
         .success(function(data, status, headers, config) {
-          if(typeof data.flashes != 'undefined' && typeof data.flashes.errors != 'undefined')
+          if(Flash.no_errors())
           {
-            $rootScope.flashes = data.flashes;
-          }
-          else
-          {
-            $rootScope.flashes = null;
-            $cookieStore.put('_indelible_session', data);
-            Session.login(data);
             $location.path('/');
+            Flash.hold_flash();
+            Session.login(data.resource);
           }
         });
     }
 
   };
 
-}]);
+});
+
+myModule.$inject = ['$scope', 'Flash', '$location', '$cookieStore', 'Session'];

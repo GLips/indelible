@@ -17,6 +17,7 @@ angular.module('indelibleApp.services').service('Session',[ '$cookieStore', 'Use
     this.currentUser = user;
     this.loggedIn = true;
     this.loggedOut = !this.loggedIn;
+    $cookieStore.put('_indelible_session', user);
   }
 
   this.getEmail = function() {

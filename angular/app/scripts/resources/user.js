@@ -1,5 +1,5 @@
 //
-angular.module('indelibleApp.resources').factory('UserSession', ['$http', function($http) {
+angular.module('indelibleApp.resources').factory('UserSession', ['$http', 'Flash', function($http, Flash) {
 
   var UserSession = function(options) {
     angular.extend(this, options);
@@ -16,7 +16,10 @@ angular.module('indelibleApp.resources').factory('UserSession', ['$http', functi
   };
 
   UserSession.prototype.$destroy = function() {
-    return $http.delete(apiPrefix + '/users/sign_out.json');
+    return $http.delete(apiPrefix + '/users/sign_out.json')
+      .success(function(data) {
+        Flash.parse(data.flashes);
+      });
   };
 
   return UserSession;
