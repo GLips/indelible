@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20130729014105) do
 
   create_table "pages", force: true do |t|
     t.text     "content"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
