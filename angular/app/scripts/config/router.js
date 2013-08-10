@@ -18,8 +18,19 @@ App.config(function ($routeProvider, $locationProvider) {
     })
 
     // PAGES
+    .when('/pages', {
+      templateUrl: '/views/pages/index.html',
+      action: 'index',
+      controller: 'PagesController'
+    })
     .when('/pages/new', {
       templateUrl: '/views/pages/new.html',
+      action: 'new',
+      controller: 'PagesController'
+    })
+    .when('/page/:id', {
+      templateUrl: '/views/pages/new.html',
+      action: 'view',
       controller: 'PagesController'
     })
 

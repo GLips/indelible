@@ -5,7 +5,7 @@ class Api::PagesController < ApplicationController
 	before_action :set_page, only: [:show, :edit, :update, :destroy]
 
 	def index
-		render json: { pages: current_user.pages.to_a }
+		render json: { pages: current_user.pages }
 	end
 
 	def create
@@ -22,13 +22,13 @@ class Api::PagesController < ApplicationController
 	end
 
 	def show
-		render json: Page.find(params[:id])
+		render json: { page: Page.find(params[:id]) }
 	end
 
 	private
 	# Use callbacks to share common setup or constraints between actions.
 	def set_page
-		@post = Post.find(params[:id])
+		@page = Page.find(params[:id])
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

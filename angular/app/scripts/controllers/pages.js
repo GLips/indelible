@@ -1,17 +1,28 @@
-angular.module('indelibleApp.controllers').controller('PagesController', ['$scope', '$location', 'Session', 'Flash', 'Page', function($scope, $location, Session, Flash, Page) {
+var myModule = angular.module('indelibleApp.controllers');
 
-  console.log("New page being created");
-  $scope.page = new Page({content: ''});
+myModule.controller('PagesController', function($scope, $location, $route, $routeParams, Session, Flash, Page) {
+  var actions = ['index', 'new', 'view'];
+  var action = $route.current.$$route.action;
+
+  $scope.index = function() {
+    $scope.pages = Page.get(function(data){
+      $scope.pages = data.pages;
+    });
+  };
+
+  $scope.new = function() {
+    $scope.page = new Page({content: ''});
+  };
+
+  $scope.view = function() {
+    Page.get({id: $routeParams.id}, function(data) {
+      $scope.page = new Page(data.page);
+    });
+  };
 
   $scope.create = function() {
-    console.log('before');
-    console.log($scope.page);
     $scope.page.$save(function(data) {
-      console.log('during');
-      console.log($scope.page);
       $scope.page = new Page(data.page);
-      console.log('after');
-      console.log($scope.page);
       if(Flash.no_errors())
       {
         $location.path('/');
@@ -24,4 +35,11 @@ angular.module('indelibleApp.controllers').controller('PagesController', ['$scop
     $scope.page.$destroy();
   };
 
-}]);
+
+  if(actions.indexOf(action) != -1)
+    $scope[action]();
+
+
+});
+
+myModule.$inject = ['$scope', '$location', '$route', 'Session', 'Flash', 'Page'];
