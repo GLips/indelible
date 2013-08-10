@@ -28,7 +28,8 @@ module Flashes extend ActiveSupport::Concern
 	def render(*args, &block)
 		if args[0][:json] != nil
 			options = args.extract_options!
-			options[:json].merge! flashes: flashes
+
+			options[:json][:flashes] = flashes
 			args << options
 		end
 		super(*args, &block)

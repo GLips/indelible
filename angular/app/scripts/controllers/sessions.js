@@ -1,6 +1,6 @@
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('SessionsController', function($scope, Flash, $location, $cookieStore, Session) {
+myModule.controller('SessionsController', function($scope, Flash, $location, $cookieStore, Session, $rootScope) {
 
   $scope.session = Session.userSession;
 
@@ -11,7 +11,7 @@ myModule.controller('SessionsController', function($scope, Flash, $location, $co
         .success(function(data, status, headers, config) {
           if(Flash.no_errors())
           {
-            $location.path('/');
+            $location.path($rootScope.path('PagesController'));
             Flash.hold_flash();
             Session.login(data.resource);
           }

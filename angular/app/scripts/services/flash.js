@@ -17,6 +17,10 @@ angular.module('indelibleApp.services').service('Flash', function() {
     this.hold = true;
   };
 
+  this.has_messages = function(flashObject) {
+    return (typeof flashObject != 'undefined' && (typeof flashObject.errors != 'undefined' || typeof flashObject.successes != 'undefined' || typeof flashObject.alerts != 'undefined'))
+  }
+
   this.errors = function() { return (typeof this.data.errors != 'undefined'); };
   this.no_errors = function() { return !this.errors(); };
 

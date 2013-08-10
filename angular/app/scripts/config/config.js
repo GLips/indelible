@@ -14,7 +14,7 @@ App
     $httpProvider.responseInterceptors.push(function(Flash) {
       return function(promise) {
         var parseFlashes = function(response) {
-          if (typeof response.data != 'undefined' && typeof response.data.flashes != 'undefined')
+          if (Flash.has_messages(response.data.flashes))
           {
             Flash.parse(response.data.flashes);
           }
