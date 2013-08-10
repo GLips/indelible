@@ -8,6 +8,10 @@ class Api::PagesController < ApplicationController
 		render json: { pages: current_user.pages }
 	end
 
+	def show
+		render json: { page: Page.find(params[:id]) }
+	end
+
 	def create
 		@page = current_user.pages.create(page_params)
 		if @page.save
@@ -21,8 +25,16 @@ class Api::PagesController < ApplicationController
 		end
 	end
 
-	def show
-		render json: { page: Page.find(params[:id]) }
+	def update
+		if @page.update_attributes(page_params)
+			add_success 'Page stored.'
+			render json: {}
+		else
+			@page.errors.full_messages.each do |m|
+				add_error m
+			end
+			render json: { page: @page }
+		end
 	end
 
 	private

@@ -12,17 +12,29 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.new = function() {
     $scope.page = new Page({content: ''});
+    $scope.function = $scope.create;
   };
 
   $scope.view = function() {
     Page.get({id: $routeParams.id}, function(data) {
       $scope.page = new Page(data.page);
     });
+    $scope.function = $scope.update;
   };
 
   $scope.create = function() {
     $scope.page.$save(function(data) {
       $scope.page = new Page(data.page);
+      if(Flash.no_errors())
+      {
+        $location.path('/');
+        Flash.hold_flash();
+      }
+    });
+  };
+
+  $scope.update = function() {
+    $scope.page.$update(function() {
       if(Flash.no_errors())
       {
         $location.path('/');
