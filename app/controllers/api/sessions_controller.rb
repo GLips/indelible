@@ -6,7 +6,7 @@ class Api::SessionsController < Devise::SessionsController
 	def new
 		self.resource = resource_class.new(sign_in_params)
 		clean_up_passwords(resource)
-		add_error('Invalid password or email, check your credentials and try again.')
+		add_error 'Invalid password or email, check your credentials and try again.'
 		render json: {}
 	end
 

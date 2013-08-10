@@ -9,7 +9,7 @@ myModule.controller('SessionsController', function($scope, Flash, $location, $co
     if ( Session.loggedOut ) {
       $scope.session.$save()
         .success(function(data, status, headers, config) {
-          if(Flash.no_errors())
+          if(Flash.no_errors() && typeof data.resource != 'undefined')
           {
             $location.path($rootScope.path('PagesController'));
             Flash.hold_flash();

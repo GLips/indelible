@@ -1,6 +1,6 @@
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('PagesController', function($scope, $location, $route, $routeParams, Session, Flash, Page) {
+myModule.controller('PagesController', function($scope, $location, $route, $routeParams, $rootScope, Session, Flash, Page) {
   var actions = ['index', 'new', 'view'];
   var action = $route.current.$$route.action;
 
@@ -27,7 +27,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       $scope.page = new Page(data.page);
       if(Flash.no_errors())
       {
-        $location.path('/');
+        $location.path($rootScope.path('PagesController'));
         Flash.hold_flash();
       }
     });
@@ -37,7 +37,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
     $scope.page.$update(function() {
       if(Flash.no_errors())
       {
-        $location.path('/');
+        $location.path($rootScope.path('PagesController'));
         Flash.hold_flash();
       }
     });
@@ -54,4 +54,4 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
 });
 
-myModule.$inject = ['$scope', '$location', '$route', 'Session', 'Flash', 'Page'];
+myModule.$inject = ['$scope', '$location', '$route', '$routeParams', '$rootScope', 'Session', 'Flash', 'Page'];

@@ -18,6 +18,10 @@ App
           {
             Flash.parse(response.data.flashes);
           }
+          else
+          {
+            Flash.clear();
+          }
           return response;
         };
         return promise.then(parseFlashes, parseFlashes);

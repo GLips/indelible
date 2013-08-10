@@ -1,14 +1,17 @@
-angular.module('indelibleApp.controllers').controller('RegistrationsController', ['$scope', '$location', 'Session', 'Flash', '$cookieStore', function($scope, $location, Session, Flash, $cookieStore) {
+var myModule = angular.module('indelibleApp.controllers');
+
+myModule.controller('RegistrationsController', function($scope, $location, Session, Flash, $cookieStore) {
 
   $scope.registration = Session.userRegistration;
 
   $scope.create = function() {
     $scope.registration.$save()
       .success(function(data, status, headers, config) {
-        if(Flash.no_errors())
+        if(Flash.no_errors() && typeof data.resource != 'undefined')
         {
-          $cookieStore.put('_indelible_session', data);
-          Session.login(data);
+          console.log(data.resource);
+          $cookieStore.put('_indelible_session', data.resource);
+          Session.login(data.resource);
           $location.path('/');
         }
       });
@@ -18,4 +21,6 @@ angular.module('indelibleApp.controllers').controller('RegistrationsController',
     $scope.registration.$destroy();
   };
 
-}]);
+});
+
+myModule.$inject = ['$scope', '$location', 'Session', 'Flash', '$cookieStore'];
