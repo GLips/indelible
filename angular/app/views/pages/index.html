@@ -1,5 +1,5 @@
 <div>
   <ul>
-    <li data-ng-repeat="page in pages"><a href="/page/{{page.id}}">{{page.content}}</a></li>
+    <li data-ng-repeat="page in pages"><a href="/page/{{page.id}}">{{page.content | cut:true:20 }} {{page.created_at | date:'fullDate'}}</a></li>
   </ul>
 </div>
