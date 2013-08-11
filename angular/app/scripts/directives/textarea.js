@@ -2,27 +2,43 @@
 
 var myModule = angular.module('indelibleApp');
 
-myModule.directive('textarea', function($document) {
+myModule.directive('textarea', function($document, Typertimer) {
     return function($scope) {
       var character,
         whiteMap = { 13: '<br>', 9: '&nbsp;&nbsp;&nbsp;&nbsp;', space: ' ', nbsp: '&nbsp;' },
         inkMap = { 60: '&lt;', 62: '&gt;' };
 
       function handleKey(evt) {
-          var key = evt.which;
+          var key = evt.which,
+              do_update = false;
 
           if(typeof whiteMap[key] != 'undefined')
             character = whiteMap[key];
           else if(typeof inkMap[key] != 'undefined')
+          {
+            do_update = true;
             character = inkMap[key];
+          }
           else
+          {
+            do_update = true;
             character = String.fromCharCode(key);
+          }
 
           // Make sure angular understands we're updating the scope
-          $scope.$apply(function(){ $scope.page.content += character; });
+          if(Typertimer.can_type())
+          {
+            Typertimer.update(do_update);
+            $scope.$apply(function(){ $scope.page.content += character; });
+          }
       };
 
-      $document.keypress(function(evt) { handleKey(evt); });
+      $document.keypress(function(evt) {
+        if(true)
+        {
+          handleKey(evt);
+        }
+      });
 
 
       // Handle backspacing and tabbing
@@ -60,3 +76,5 @@ myModule.directive('textarea', function($document) {
     };
   }
 );
+
+myModule.$inject = ['$document', 'Typertimer'];

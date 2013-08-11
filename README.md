@@ -1,4 +1,4 @@
 # Indelible
 
-> Making marks that cannot be removed.
+> That which cannot be removed, washed away, or erased.
 
