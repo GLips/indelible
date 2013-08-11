@@ -28,9 +28,15 @@ App
       };
     });
   })
-  .run(function ($rootScope, Flash) {
+  .run(function ($rootScope, $route, Flash) {
     $rootScope.$on("$routeChangeStart", function () {
       Flash.clear();
     });
+
+
+    $rootScope.$on('$routeChangeSuccess', function() {
+      $rootScope.page_title = $route.current.$$route.title + " — Indelible";
+    });
+
   });
 
