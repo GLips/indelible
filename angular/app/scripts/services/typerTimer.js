@@ -3,9 +3,8 @@ angular.module('indelibleApp.services').service('Typertimer', function() {
   this.last_update = 0;
   this.limit = 100;
 
-  this.update = function(do_update) {
-    if(do_update)
-      this.last_update = this.getTime();
+  this.update = function() {
+    this.last_update = this.getTime();
   };
 
   this.can_type = function() {
