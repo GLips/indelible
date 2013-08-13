@@ -1,0 +1,72 @@
+$iconSpritePath: "../images/glyphicons-halflings.png"
+$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png"
+@import url(http://fonts.googleapis.com/css?family=Jacques+Francois)
+
+$baseFontFamily: 'Jacquest Francois'
+@import "bootstrap-sass/lib/bootstrap"
+
+/* Put your CSS here */
+html, body
+	margin: 0px
+
+body
+	background: #f1f1f1
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+	color: #333
+	font-size: 16px
+
+.indelible-main
+	margin: 20px 0
+
+.hero-unit
+	margin: 50px auto 0 auto
+	width: 300px
+	font-size: 18px
+	font-weight: 200
+	line-height: 30px
+	background-color: #eee
+	border-radius: 6px
+	padding: 60px
+
+.hero-unit h1
+	font-size: 60px
+	line-height: 1
+	letter-spacing: -1px
+
+.logo
+	background-image: url('/images/logo.png')
+	background-repeat: no-repeat
+	background-position: center
+	width: 210px
+	height: 50px
+	margin: 0 auto
+
+.usercorner
+	margin: 10px 0 0
+	float: right
+
+.usercorner-list
+	list-style-type: none
+	margin: 0
+	li
+		float: left
+		margin-left: 10px
+		&:first-child
+			margin-left: 0
+
+.logo-link
+	display: block
+	width: 210px
+	height: 50px
+
+.entry
+	+gradient-vertical($white, #eee)
+	border-bottom: 1px solid #ccc
+	td
+		padding: 5px 10px
+
+.odd-entry
+	//background-color: #CCC
+
+.even-entry
+	//background-color: #AAA

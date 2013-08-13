@@ -1,5 +1,14 @@
-<div>
-  <ul>
-    <li data-ng-repeat="page in pages"><a href="/page/{{page.id}}">{{page.content | cut:true:60 }} {{page.created_at | date:'fullDate'}}</a></li>
-  </ul>
+<div class="page-index">
+  <div class="pages-list-desc" data-ng-show="pages.length == 0">
+    There are no pages stored yet—<a href="/pages/new">start a new one</a>.
+  </div>
+  <div class="pages-list-desc" data-ng-show="pages.length > 0">
+    Keep on writing—<a href="/pages/new">start a new page</a>.
+  </div>
+	<table class="page-list">
+		<tr class="entry"  data-ng-class-even="'even-entry'" data-ng-class-odd="'odd-entry'" data-ng-repeat="page in pages">
+			<td class="page-link"><a href="/page/{{page.id}}">{{page.content | cut:true:60 }}</a></td>
+			<td class="page-date">{{page.created_at | date:'fullDate'}}</td>
+		</tr>
+	</table>
 </div>

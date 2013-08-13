@@ -1,3 +1,6 @@
 <div data-greenlight style="background:#00aa00;height:2px;width:{{width}}%;"></div>
-<div class="main-text-area" data-textarea><span data-ng-bind-html="page.content"></span><span data-blinker>|</span></div>
-<button data-ng-click='function()'>Store it</button>
+<div class="page-editor" data-textarea>
+  <span data-ng-bind-html="page.content"></span><span class="editor-cursor" data-blinker>|</span>
+  &nbsp;
+</div>
+<button class="btn btn-success page-store-button" data-ng-click='function()'>Store it</button>

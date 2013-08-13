@@ -14,7 +14,7 @@ myModule.directive('usercorner', function(Session, $location, $rootScope) {
         }
         else
         {
-          $scope.content = "";
+          $scope.content = "&nbsp;";
         }
       });
 

@@ -1,7 +1,7 @@
 angular.module('indelibleApp.services').service('Typertimer', function() {
 
   this.last_update = 0;
-  this.limit = 100;
+  this.limit = 0;
 
   this.update = function() {
     this.last_update = this.getTime();
