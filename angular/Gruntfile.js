@@ -349,6 +349,15 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
+  grunt.registerTask('stage', [
+    'clean:dist',
+    'useminPrepare',
+    'concurrent:dist',
+    'concat',
+    'copy',
+    'cdnify'
+  ]);
+
   grunt.registerTask('build', [
     'clean:dist',
     'useminPrepare',

@@ -22,6 +22,8 @@ depend :remote, :command, 'bower'
 
 server 'indelibleapp.com', :app, :web, :db, :primary => true
 
+after 'deploy:update_code', 'deploy:migrate'
+
 after 'deploy', 'bower:init'
 after 'deploy', 'grunt:init_resources'
 after 'deploy', 'grunt:build'
@@ -54,8 +56,8 @@ namespace :grunt do
 
 	desc 'Prepare frontend files for production'
 	task :build do
-		run "cp -R #{shared_path}/node_modules #{angular_path}"
-		run "cd #{angular_path} && grunt build"
+		run "cp -R #{shared_path}/node_modules #{angular_path}/"
+		run "cd #{angular_path} && nohup grunt build"
 	end
 
 end
@@ -64,7 +66,7 @@ namespace :bower do
 
 	desc 'Install or update frontend packages'
 	task :init do
-		if(!remote_file_exists? "#{angular_path}/app/bower_components")
+		if(!remote_file_exists? "#{shared_path}/bower_components")
 			run "cd #{angular_path} && bower install && cp -r app/bower_components #{shared_path}/"
 		else
 			run "cp -r #{shared_path}/bower_components #{angular_path}/app/"
