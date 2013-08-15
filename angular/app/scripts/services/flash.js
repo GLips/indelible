@@ -7,7 +7,6 @@ angular.module('indelibleApp.services').service('Flash', function() {
   };
 
   this.clear = function() {
-    console.log("Hold is "+this.should_hold +". Clearing.");
     if(this.should_hold)
       this.should_hold = false;
     else
@@ -15,7 +14,6 @@ angular.module('indelibleApp.services').service('Flash', function() {
   };
 
   this.hold = function() {
-    console.log("Hold that flash!");
     this.should_hold = true;
   };
 
