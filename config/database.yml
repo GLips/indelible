@@ -19,7 +19,7 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
+  adapter: mysql2
   password: <%= ENV['RAILS_DB_PASSWORD'] %>
   host: <%= ENV['RAILS_DB_HOST'] %>
   username: <%= ENV['RAILS_DB_USER'] %>
