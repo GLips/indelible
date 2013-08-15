@@ -8,4 +8,4 @@ myModule.controller('MainCtrl', function ($scope, $location, $rootScope, Page, S
         $location.path($rootScope.path('PagesController'));
       }
   });
-myModule.$inject = ['$scope', '$location', 'Page', 'Session'];
+myModule.$inject = ['$scope', '$location', '$rootScope', 'Page', 'Session'];

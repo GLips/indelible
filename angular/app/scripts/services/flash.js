@@ -7,14 +7,16 @@ angular.module('indelibleApp.services').service('Flash', function() {
   };
 
   this.clear = function() {
-    if(!this.hold)
-      this.parse({});
+    console.log("Hold is "+this.should_hold +". Clearing.");
+    if(this.should_hold)
+      this.should_hold = false;
     else
-      this.hold = false;
+      this.parse({});
   };
 
-  this.hold_flash = function() {
-    this.hold = true;
+  this.hold = function() {
+    console.log("Hold that flash!");
+    this.should_hold = true;
   };
 
   this.has_messages = function(flashObject) {
@@ -31,6 +33,6 @@ angular.module('indelibleApp.services').service('Flash', function() {
   this.no_alerts = function() { return !this.alerts(); };
 
   this.clear();
-  this.hold = false;
+  this.should_hold = false;
 
 });

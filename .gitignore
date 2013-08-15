@@ -17,3 +17,6 @@
 
 # Ignore RubyMine config files
 /.idea/*
+
+# Ignore the public folder, Grunt builds it automatically via Capistrano
+/public/*

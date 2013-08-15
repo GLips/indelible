@@ -12,7 +12,7 @@ myModule.controller('SessionsController', function($scope, Flash, $location, $co
           if(Flash.no_errors() && typeof data.resource != 'undefined')
           {
             $location.path($rootScope.path('PagesController'));
-            Flash.hold_flash();
+            Flash.hold();
             Session.login(data.resource);
           }
         });
@@ -22,4 +22,4 @@ myModule.controller('SessionsController', function($scope, Flash, $location, $co
 
 });
 
-myModule.$inject = ['$scope', 'Flash', '$location', '$cookieStore', 'Session'];
+myModule.$inject = ['$scope', 'Flash', '$location', '$cookieStore', 'Session', '$rootScope'];

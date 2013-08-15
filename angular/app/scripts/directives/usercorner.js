@@ -2,7 +2,7 @@
 
 var myModule = angular.module('indelibleApp');
 
-myModule.directive('usercorner', function(Session, $location, $rootScope) {
+myModule.directive('usercorner', function(Session, $location) {
     return function($scope) {
       $scope.session = Session;
 

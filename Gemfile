@@ -7,6 +7,7 @@ group :development, :test do
 	gem 'sqlite3'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 4.2.1'
+	gem 'capistrano'
 end
 
 group :test do
@@ -15,7 +16,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
+	gem 'mysql2', '~> 0.3.13'
 end
 
 # Use SCSS for stylesheets

@@ -19,7 +19,10 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  password: <%= ENV['RAILS_DB_PASSWORD'] %>
+  host: <%= ENV['RAILS_DB_HOST'] %>
+  username: <%= ENV['RAILS_DB_USER'] %>
+  database: indelible
   pool: 5
   timeout: 5000

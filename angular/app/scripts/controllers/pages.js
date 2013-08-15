@@ -28,7 +28,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $location.path($rootScope.path('PagesController'));
-        Flash.hold_flash();
+        Flash.hold();
       }
     });
   };
@@ -38,7 +38,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $location.path($rootScope.path('PagesController'));
-        Flash.hold_flash();
+        Flash.hold();
       }
     });
   };

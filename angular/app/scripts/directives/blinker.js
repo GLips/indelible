@@ -33,3 +33,5 @@ myModule.directive('blinker', function($timeout) {
     init();
   };
 });
+
+myModule.$inject = ['$timeout'];

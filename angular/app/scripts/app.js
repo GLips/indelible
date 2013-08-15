@@ -8,7 +8,7 @@ angular.module('indelibleApp.controllers', ['ngCookies']);
 
 var App = angular.module('indelibleApp', ['ngResource', 'ngSanitize', 'indelibleApp.services', 'indelibleApp.resources', 'indelibleApp.controllers', 'indelibleApp.filters']);
 
-App.run(function($route, $rootScope, $location)
+App.run(function($route, $rootScope)
 {
   $rootScope.path = function(controller, params)
   {
@@ -29,3 +29,5 @@ App.run(function($route, $rootScope, $location)
     return undefined;
   };
 });
+
+App.$inject = ['$route', '$rootScope', '$location'];

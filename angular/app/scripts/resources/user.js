@@ -1,5 +1,5 @@
-//
-angular.module('indelibleApp.resources').factory('UserSession', ['$http', 'Flash', function($http, Flash) {
+var myModule = angular.module('indelibleApp.resources');
+myModule.factory('UserSession', function($http, Flash) {
 
   var UserSession = function(options) {
     angular.extend(this, options);
@@ -18,16 +18,19 @@ angular.module('indelibleApp.resources').factory('UserSession', ['$http', 'Flash
   UserSession.prototype.$destroy = function() {
     return $http.delete(apiPrefix + '/users/sign_out.json')
       .success(function(data) {
+        Flash.hold();
         Flash.parse(data.flashes);
       });
   };
 
   return UserSession;
 
-}]);
+});
 
-//
-angular.module('indelibleApp.resources').factory('UserRegistration', ['$http', function($http) {
+myModule.$inject = ['$http', 'Flash'];
+
+var myModule = angular.module('indelibleApp.resources');
+myModule.factory('UserRegistration', function($http, Flash) {
 
   var UserRegistration = function(options) {
     angular.extend(this, options);
@@ -47,4 +50,6 @@ angular.module('indelibleApp.resources').factory('UserRegistration', ['$http', f
 
   return UserRegistration;
 
-}]);
+});
+
+myModule.$inject = ['$http', 'Flash'];

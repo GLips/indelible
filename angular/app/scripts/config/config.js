@@ -11,22 +11,6 @@ App
         return promise.then(hide, hide);
       };
     });
-    $httpProvider.responseInterceptors.push(function(Flash) {
-      return function(promise) {
-        var parseFlashes = function(response) {
-          if (Flash.has_messages(response.data.flashes))
-          {
-            Flash.parse(response.data.flashes);
-          }
-          else
-          {
-            Flash.clear();
-          }
-          return response;
-        };
-        return promise.then(parseFlashes, parseFlashes);
-      };
-    });
   })
   .run(function ($rootScope, $route, Flash) {
     $rootScope.$on("$routeChangeStart", function () {
@@ -40,3 +24,4 @@ App
 
   });
 
+App.$inject = ['$httpProvider', 'Flash', '$rootScope', '$route'];

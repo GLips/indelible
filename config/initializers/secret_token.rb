@@ -9,4 +9,8 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Indelibile::Application.config.secret_key_base = 'fae32c5aa56cd4a01648da9c33ab9531b81f7883dbc6b2a9f22aaea967cfd6300c8c78f37673c27392aa93a6acfc0261427c0dba4ad8b89a8feac6fba2424c48'
+Indelibile::Application.config.secret_key_base = if Rails.env.development? or Rails.env.test?
+																									 ('x' * 30) # meets minimum requirement of 30 chars long
+																								 else
+																									 ENV['RAILS_SECRET_KEY_BASE']
+																								 end
