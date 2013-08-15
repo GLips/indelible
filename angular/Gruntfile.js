@@ -289,7 +289,6 @@ module.exports = function (grunt) {
         'compass'
       ],
       dist: [
-        'coffee',
         'compass:dist',
         'imagemin',
         'svgmin',
