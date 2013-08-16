@@ -6,5 +6,8 @@ Indelibile::Application.routes.draw do
 		resources :pages, controller: 'api/pages'
 	end
 
+	#get 'page/*a' => 'home#index'
+	get '*pages' => 'home#index'
+
 	root to: 'home#index'
 end

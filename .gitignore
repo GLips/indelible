@@ -20,3 +20,6 @@
 
 # Ignore the public folder, Grunt builds it automatically via Capistrano
 /public/*
+
+# This file is automatically created on deploy
+/app/views/home/index.html.erb
