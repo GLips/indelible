@@ -17,7 +17,15 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.view = function() {
     Page.get({id: $routeParams.id}, function(data) {
-      $scope.page = new Page(data.page);
+      if(Flash.no_errors())
+      {
+        $scope.page = new Page(data.page);
+      }
+      else
+      {
+        Flash.hold();
+        $location.path($rootScope.path('PagesController'));
+      }
     });
     $scope.function = $scope.update;
   };

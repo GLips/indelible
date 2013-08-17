@@ -3,13 +3,14 @@ class Api::PagesController < ApplicationController
 
 	before_filter :authenticate_user!, only: [:index, :create, :edit, :update, :destroy]
 	before_action :set_page, only: [:show, :edit, :update, :destroy]
+	before_filter :user_owns_page, only: [:show, :update]
 
 	def index
 		render json: { pages: current_user.pages }
 	end
 
 	def show
-		render json: { page: Page.find(params[:id]) }
+			render json: { page: Page.find(params[:id]) }
 	end
 
 	def create
@@ -38,6 +39,16 @@ class Api::PagesController < ApplicationController
 	end
 
 	private
+	def user_owns_page
+		if @page.user_id == current_user.id
+			true
+		else
+			add_error 'You don\'t own that page.'
+			render json: {}
+			false
+		end
+	end
+
 	# Use callbacks to share common setup or constraints between actions.
 	def set_page
 		@page = Page.find(params[:id])
