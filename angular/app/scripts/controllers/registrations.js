@@ -12,7 +12,7 @@ myModule.controller('RegistrationsController', function($scope, $location, Sessi
           console.log(data.resource);
           $cookieStore.put('_indelible_session', data.resource);
           Session.login(data.resource);
-          $location.path('/');
+          $location.path('/pages/new');
         }
       });
   };
