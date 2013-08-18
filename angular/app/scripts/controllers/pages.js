@@ -6,6 +6,14 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.index = function() {
     $scope.pages = Page.get(function(data){
+      if(typeof this.saved_page != 'undefined' && typeof data.pages != 'undefined')
+      {
+        var p = $.grep(data.pages, function(e) { return e.id == this.saved_page });
+        p[0].saved = true;
+        p[0].saved_message = this.saved_message;
+        delete this.saved_message;
+        delete this.saved_page;
+      }
       $scope.pages = data.pages;
     });
   };
@@ -45,9 +53,11 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   };
 
   $scope.update = function() {
-    $scope.page.$update(function() {
+    $scope.page.$update(function(data) {
       if(Flash.no_errors())
       {
+        this.saved_page = data.saved_page;
+        this.saved_message = "Stored "+ $scope.total_words +" words";
         $location.path($rootScope.path('PagesController'));
         Flash.hold();
       }

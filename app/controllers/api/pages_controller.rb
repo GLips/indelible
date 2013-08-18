@@ -28,8 +28,8 @@ class Api::PagesController < ApplicationController
 
 	def update
 		if @page.update_attributes(page_params)
-			add_success 'Page stored.'
-			render json: {}
+			#add_success 'Page stored.'
+			render json: { saved_page: @page.id }
 		else
 			@page.errors.full_messages.each do |m|
 				add_error m

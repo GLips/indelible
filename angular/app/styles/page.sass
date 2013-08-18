@@ -1,5 +1,6 @@
 $baseFontFamily: 'Jacquest Francois'
 @import "bootstrap-sass/lib/bootstrap"
+@import "compass/css3/transition"
 
 .page
 	padding: 100px 140px
@@ -22,3 +23,11 @@ $baseFontFamily: 'Jacquest Francois'
 
 .page-date
 	text-align: right
+
+.page-saved-alert
+	overflow: hidden
+	display: inline-block
+	white-space: pre
+	-webkit-animation: slidein 0.3s, slideout 0.5s 2.3s
+	-webkit-animation-timing-function: ease-in, ease-out
+	-webkit-animation-fill-mode: forwards
