@@ -6,7 +6,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.index = function() {
     $scope.pages = Page.get(function(data){
-      if(typeof this.saved_page != 'undefined' && typeof data.pages != 'undefined')
+      if(typeof this != 'undefined' && typeof this.saved_page != 'undefined' && typeof data.pages != 'undefined')
       {
         var p = $.grep(data.pages, function(e) { return e.id == this.saved_page });
         p[0].saved = true;
