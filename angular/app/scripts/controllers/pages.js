@@ -12,6 +12,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.new = function() {
     $scope.page = new Page({content: ''});
+    $scope.page.calculate_word_count();
     $scope.function = $scope.create;
   };
 
@@ -20,6 +21,8 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $scope.page = new Page(data.page);
+        $scope.total_words = $scope.page.calculate_word_count();
+        $scope.word_count = 0;
       }
       else
       {

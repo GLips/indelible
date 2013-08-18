@@ -1,9 +1,9 @@
 <div class="page-index">
-  <div class="pages-list-desc" data-ng-show="pages.length == 0">
-    There are no pages stored yet—<a href="/pages/new">start a new one</a>.
-  </div>
   <div class="pages-list-desc" data-ng-show="pages.length > 0">
     Keep on writing—<a href="/pages/new">start a new page</a>.
+  </div>
+  <div class="pages-list-desc" data-ng-show="pages.length == 0">
+    There are no pages stored yet.
   </div>
 	<table class="page-list">
 		<tr class="entry"  data-ng-class-even="'even-entry'" data-ng-class-odd="'odd-entry'" data-ng-repeat="page in pages">

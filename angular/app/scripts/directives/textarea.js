@@ -2,28 +2,26 @@
 
 var myModule = angular.module('indelibleApp');
 
-myModule.directive('textarea', function($document, Typertimer) {
+myModule.directive('textarea', function($document, Typertimer, Maps) {
     return function($scope) {
-      var character,
-        whiteMap = { 13: '<br>', 9: '&nbsp;&nbsp;&nbsp;&nbsp;', 32: ' ', nbsp: '&nbsp;' },
-        inkMap = { 60: '&lt;', 62: '&gt;' };
+      var character;
 
       $scope.total_words = 0;
 
       function handleKey(evt) {
           var key = evt.which;
 
-          if(typeof whiteMap[key] != 'undefined')
-            character = whiteMap[key];
-          else if(typeof inkMap[key] != 'undefined')
-            character = inkMap[key];
+          if(typeof Maps.whiteMap[key] != 'undefined')
+            character = Maps.whiteMap[key];
+          else if(typeof Maps.inkMap[key] != 'undefined')
+            character = Maps.inkMap[key];
           else
             character = String.fromCharCode(key);
 
           if(Typertimer.can_type())
           {
             Typertimer.update();
-            var wc = wordCount($scope.page.content);
+            var wc = $scope.page.calculate_word_count();
             $scope.total_words = (wc > $scope.total_words) ? wc : $scope.total_words;
             $scope.page.content += character;
           }
@@ -33,9 +31,9 @@ myModule.directive('textarea', function($document, Typertimer) {
       {
         var content = $scope.page.content;
 
-        if(wordCount(content) == $scope.total_words)
+        if($scope.page.calculate_word_count() == $scope.total_words)
         {
-          $scope.page.content = content.substr(0, content.length - $scope.last_word_length);
+          $scope.page.content = content.substr(0, content.length - $scope.page.last_word_length);
         }
       }
 
@@ -43,9 +41,9 @@ myModule.directive('textarea', function($document, Typertimer) {
       {
         var content = $scope.page.content;
 
-        for(var k in whiteMap)
+        for(var k in Maps.whiteMap)
         {
-          var w = whiteMap[k];
+          var w = Maps.whiteMap[k];
           if(content.substr(content.length - w.length) === w)
           {
             $scope.$apply(function(){ $scope.page.content = content.substr(0, content.length - w.length); });
@@ -53,21 +51,6 @@ myModule.directive('textarea', function($document, Typertimer) {
           }
         }
         return false;
-      }
-
-      function wordCount(s)
-      {
-        for(var k in whiteMap)
-        {
-          var w = whiteMap[k];
-          w = new RegExp(w, "g");
-          s = s.replace(w, ' ');
-        }
-        s = s.replace(/\s+/g, ' ');
-        s = s.split(' ');
-        $scope.last_word_length = s[(s.length - 1)].length;
-
-        return s.length;
       }
 
       $document.keypress(function(evt) {
@@ -107,4 +90,4 @@ myModule.directive('textarea', function($document, Typertimer) {
   }
 );
 
-myModule.$inject = ['$document', 'Typertimer'];
+myModule.$inject = ['$document', 'Typertimer', 'Maps'];
