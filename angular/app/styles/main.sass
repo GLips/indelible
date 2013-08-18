@@ -54,6 +54,12 @@ body
 		&:first-child
 			margin-left: 0
 
+.small
+	font-size: 16px
+
+.center
+	text-align: center
+
 .logo-link
 	display: block
 	width: 210px
@@ -65,8 +71,17 @@ body
 	td
 		padding: 5px 10px
 
-.odd-entry
-	//background-color: #CCC
+.spaced
+	margin: 20px 0
 
-.even-entry
-	//background-color: #AAA
+.content
+	+box-sizing(border-box)
+	border: 0
+	width: 100%
+	min-height: 100px
+	background-color: #FFF
+	padding: 20px 140px
+	line-height: 1.5em
+	font-size: 24px
+	font-family: 'Jacquest Francois'
+	word-wrap: break-word

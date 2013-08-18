@@ -1,27 +1,33 @@
-<div class="user-forms">
-  <form name="myForm" ng-submit="create()">
-    <div ngRepeat="error in errors">
-      {{error}}
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <input type="email" id="email" name="email" placeholder="Email" ng-model="registration.email" ng-minlength="2" required>
+<div class="content">
+  <h1>Register</h1>
+  <div class="spaced">
+    Indelible is an online journal that will make you a better writer
+  </div>
+  <div class="user-forms">
+    <form name="myForm" ng-submit="create()">
+      <div ngRepeat="error in errors">
+        {{error}}
       </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <input type="password" id="password" name="password" placeholder="Password" ng-model="registration.password" ng-minlength="2" password-validate required>
+      <div class="control-group">
+        <div class="controls">
+          <input type="email" id="email" name="email" placeholder="Email" ng-model="registration.email" ng-minlength="2" required>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" ng-model="registration.password_confirmation" ng-minlength="2" password-validate required>
+      <div class="control-group">
+        <div class="controls">
+          <input type="password" id="password" name="password" placeholder="Password" ng-model="registration.password" ng-minlength="2" password-validate required>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <button type="submit" class="btn">Sign up</button>
+      <div class="control-group">
+        <div class="controls">
+          <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" ng-model="registration.password_confirmation" ng-minlength="2" password-validate required>
+        </div>
       </div>
-    </div>
-  </form>​
- </div>
+      <div class="control-group">
+        <div class="controls center">
+          <button type="submit" class="btn">Start Writing</button>
+        </div>
+      </div>
+    </form>​
+  </div>
+</div>

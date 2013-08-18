@@ -7,5 +7,9 @@ myModule.controller('MainCtrl', function ($scope, $location, $rootScope, Page, S
       {
         $location.path($rootScope.path('PagesController'));
       }
+      else
+      {
+        $scope.page = new Page({ content: '' });
+      }
   });
 myModule.$inject = ['$scope', '$location', '$rootScope', 'Page', 'Session'];
