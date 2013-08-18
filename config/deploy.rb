@@ -87,6 +87,7 @@ namespace :deploy do
 	desc 'Switch GA placeholder code for production'
 	task :analytics do
 		run "cd #{release_path} && sed -i 's/UA-XXXXX-X/UA-18334263-4/g' #{public_index}"
+		run "cp #{shared_path}/google* #{release_path}/public"
 	end
 
 	desc 'Move the static index HTML file inside Rails so cookies are set properly'
