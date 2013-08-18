@@ -27,6 +27,7 @@ after 'deploy:update_code', 'deploy:migrate'
 after 'deploy', 'bower:init'
 after 'deploy', 'grunt:init_resources'
 after 'deploy', 'grunt:build'
+after 'deploy', 'deploy:analytics'
 after 'deploy', 'deploy:index'
 after 'deploy', 'deploy:restart'
 after 'deploy', 'deploy:cleanup'
@@ -42,6 +43,10 @@ end
 
 def angular_path
 	"#{release_path}/angular"
+end
+
+def public_index
+	'public/index.html'
 end
 
 namespace :grunt do
@@ -79,9 +84,14 @@ end
 
 namespace :deploy do
 
+	desc 'Switch GA placeholder code for production'
+	task :analytics do
+		run "cd #{release_path} && sed -i 's/UA-XXXXX-X/UA-18334263-4/g' #{public_index}"
+	end
+
 	desc 'Move the static index HTML file inside Rails so cookies are set properly'
 	task :index do
-		run "cd #{release_path}/public && mv index.html ../app/views/home/index.html.erb"
+		run "cd #{release_path} && mv #{public_index} app/views/home/index.html.erb"
 	end
 
 	desc 'Restart Passenger'
