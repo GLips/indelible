@@ -9,7 +9,6 @@ myModule.controller('RegistrationsController', function($scope, $location, Sessi
       .success(function(data, status, headers, config) {
         if(Flash.no_errors() && typeof data.resource != 'undefined')
         {
-          console.log(data.resource);
           $cookieStore.put('_indelible_session', data.resource);
           Session.login(data.resource);
           $location.path('/pages/new');
