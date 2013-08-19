@@ -10,14 +10,7 @@ myModule.factory ('Page', function($resource, Maps) {
   page.prototype.calculate_word_count = function() {
     if(typeof this.content != 'undefined')
     {
-      var s = this.content;
-      for(var k in Maps.whiteMap)
-      {
-        var w = Maps.whiteMap[k];
-        w = new RegExp(w, "g");
-        s = s.replace(w, ' ');
-      }
-      s = s.replace(/\s+/g, ' ');
+			var s = Maps.strip_whitemapped_characters(this.content);
       s = s.split(' ');
       page.prototype.last_word_length = s[(s.length - 1)].length;
       page.prototype.word_count = s.length;
