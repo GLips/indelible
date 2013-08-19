@@ -16,8 +16,7 @@ class Api::PagesController < ApplicationController
 	def create
 		@page = current_user.pages.create(page_params)
 		if @page.save
-			add_success 'Page stored.'
-			render json: { page: @page }
+			render json: { saved_page: @page.id }
 		else
 			@page.errors.full_messages.each do |m|
 				add_error m

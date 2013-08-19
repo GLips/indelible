@@ -47,6 +47,8 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $location.path($rootScope.path('PagesController'));
+        Page.saved_page = data.saved_page;
+        Page.saved_message = "Stored "+ $scope.total_words +" words";
         Flash.hold();
       }
     });
