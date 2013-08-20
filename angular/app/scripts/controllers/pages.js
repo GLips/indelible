@@ -71,6 +71,12 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   };
 
 
+
+
+  $scope.openView = function(id) {
+    $location.path('page/' + id);
+  }
+
   if(actions.indexOf(action) != -1)
     $scope[action]();
 

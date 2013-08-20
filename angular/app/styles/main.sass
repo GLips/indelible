@@ -4,6 +4,8 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png"
 
 $baseFontFamily: 'Jacquest Francois'
 @import "bootstrap-sass/lib/bootstrap"
+@import "compass/css3/transition"
+@import "partials"
 
 /* Put your CSS here */
 html, body
@@ -66,10 +68,28 @@ body
 	height: 50px
 
 .entry
-	+gradient-vertical($white, #eee)
-	border-bottom: 1px solid #ccc
-	td
-		padding: 5px 10px
+	@extend .clearfix
+	font-size: 18px
+	cursor: pointer
+	color: #000
+	background-color: #FFF
+	border: 2px solid #ddd
+	border-top: 2px solid #ddd
+	border-bottom: 5px solid #ddd
+	+transition-property(background-color, color, border-color, font-size, padding)
+	+transition-duration(0.15s)
+	padding: 15px 20px
+	min-height: 20px
+	margin-bottom: 15px
+	+box-shadow(0 1px 2px rgba(0,0,0,0.35))
+	&:hover
+		.page-saved-alert
+			color: #fff
+		padding: 20px 20px
+		border-color: #189328
+		font-size: 20px
+		color: #FFF
+		background-color: #1CAD2F
 
 .spaced
 	margin: 20px 0

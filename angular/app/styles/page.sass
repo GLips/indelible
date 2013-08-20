@@ -16,18 +16,26 @@ $baseFontFamily: 'Jacquest Francois'
 
 .page-list
 	width: 100%
-	border: 1px solid #ccc
+	table-layout: fixed
 
 .page-link
-	height: auto
+	word-break: break-all
+	width: 660px
+	float: left
 
 .page-date
 	text-align: right
+	width: 235px
+	float: right
 
 .page-saved-alert
 	overflow: hidden
 	display: inline-block
 	white-space: pre
+	color: #090
+	font-weight: bold
+	+transition-property(color)
+	+transition-duration(0.15s)
 	-webkit-animation: slidein 0.3s, slideout 0.5s 2.3s
 	-webkit-animation-timing-function: ease-in, ease-out
 	-webkit-animation-fill-mode: forwards
