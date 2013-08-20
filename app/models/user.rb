@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
 	has_many :pages
 
 	def page_summaries
-		pages.select('id, LEFT(content, 150) AS content')
+		pages.select('id, LEFT(content, 150) AS content, created_at, updated_at')
 	end
 end
