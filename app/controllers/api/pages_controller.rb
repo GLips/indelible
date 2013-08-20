@@ -6,7 +6,7 @@ class Api::PagesController < ApplicationController
 	before_filter :user_owns_page, only: [:show, :update]
 
 	def index
-		render json: { pages: current_user.pages }
+		render json: { pages: current_user.page_summaries }
 	end
 
 	def show

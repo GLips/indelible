@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 	has_many :pages
+
+	def page_summaries
+		pages.select('id, LEFT(content, 150) AS content')
+	end
 end
