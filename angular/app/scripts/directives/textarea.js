@@ -9,9 +9,9 @@ myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
       $scope.total_words = 0;
 
       function handleKey(evt) {
-				var character;
-        character = null;
+        var character = null;
         var key = evt.which;
+        evt.preventDefault();
 
         if(key === 8)
         {
@@ -27,12 +27,13 @@ myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
           Typertimer.update();
           $scope.page.add_character(character);
         }
-				$scope.total_words = $scope.page.calculate_word_count();
+        $scope.total_words = $scope.page.calculate_word_count();
       };
 
       if (true || $scope.page.is_owned_by_current_user()) {
         $document.keypress(function(evt) {
-          handleKey(evt);
+          if (!evt.ctrlKey && !evt.metaKey)
+            handleKey(evt);
         });
 
 
@@ -40,9 +41,8 @@ myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
         $document.keydown(function(evt) {
           var key = evt.which;
 
-          if(key === 8 || key === 9)
+          if (key === 8 || key === 9)
           {
-            evt.preventDefault();
             handleKey(evt);
           }
         });
