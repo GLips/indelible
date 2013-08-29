@@ -5,7 +5,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   var action = $route.current.$$route.action;
 
   $scope.index = function() {
-    $scope.pages = Page.get(function(data){
+    $scope.pages = Page.get(function(data) {
       if(typeof Page.saved_page != 'undefined' && typeof data.pages != 'undefined')
       {
         var p = $.grep(data.pages, function(e) { return e.id == Page.saved_page });
@@ -20,7 +20,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.new = function() {
     $scope.page = new Page({content: ''});
-    $scope.page.calculate_word_count();
+    Page.original_word_count = $scope.page.calculate_word_count();
     $scope.function = $scope.create;
   };
 
@@ -29,13 +29,14 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $scope.page = new Page(data.page);
-        $scope.total_words = $scope.page.calculate_word_count();
+				$scope.page.calculate_word_count();
+        $scope.total_words = $scope.page.get_word_count();
         $scope.word_count = 0;
       }
       else
       {
         Flash.hold();
-        $location.path($rootScope.path('PagesController'));
+        $location.path($rootScope.path('MainController'));
       }
     });
     $scope.function = $scope.update;
@@ -63,7 +64,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
         Page.saved_message = "Stored "+ $scope.total_words +" words";
         Flash.hold();
       }
-    });
+    }, function(error) { console.log(error); });
   };
 
   $scope.destroy = function() {

@@ -1,6 +1,6 @@
 <div data-greenlight style="background:#00aa00;height:2px;width:{{width}}%;"></div>
 <div class="content page editor" data-textarea>
-  <span data-ng-bind-html="page.content"></span><wbr><span class="editor-cursor" data-blinker>|</span>
+  <span data-ng-bind-html="page.content"></span><wbr><span class="editor-cursor" data-ng-show="Session.currentUser.id == page.user_id" data-blinker>|</span>
   &nbsp;
 </div>
 <button class="btn btn-success page-store-button" data-ng-click='function()'>Store {{total_words}} words</button>

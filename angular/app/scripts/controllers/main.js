@@ -2,9 +2,10 @@
 
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('MainCtrl', function ($scope, $location, $rootScope, Page, Session) {
+myModule.controller('MainController', function ($scope, $location, $rootScope, Page, Session, Flash) {
       if(Session.loggedIn)
       {
+        Flash.hold();
         $location.path($rootScope.path('PagesController'));
       }
       else
@@ -12,4 +13,4 @@ myModule.controller('MainCtrl', function ($scope, $location, $rootScope, Page, S
         $scope.page = new Page({ content: '' });
       }
   });
-myModule.$inject = ['$scope', '$location', '$rootScope', 'Page', 'Session'];
+myModule.$inject = ['$scope', '$location', '$rootScope', 'Page', 'Session', 'Flash'];
