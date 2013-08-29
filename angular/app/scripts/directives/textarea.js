@@ -32,8 +32,16 @@ myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
 
       if (true || $scope.page.is_owned_by_current_user()) {
         $document.keypress(function(evt) {
-          if (!evt.ctrlKey && !evt.metaKey)
+          var key = evt.which;
+
+          if (key === 8 || key === 9)
+          {
+            // FF detects 8/9 on keypress, Chrome/IE do not.
+            return;
+          }
+          else if (!evt.ctrlKey && !evt.metaKey) {
             handleKey(evt);
+          }
         });
 
 
