@@ -5,9 +5,11 @@ module Flashes extend ActiveSupport::Concern
 
 	def initialize
 		self.flashes = {}
+		@has_errors = false
 	end
 
 	def add_error(msg)
+		@has_errors = true;
 		add_message(msg, :errors)
 	end
 
@@ -30,6 +32,7 @@ module Flashes extend ActiveSupport::Concern
 			options = args.extract_options!
 
 			options[:json][:flashes] = flashes
+			options[:status] = 422 if @has_errors
 			args << options
 		end
 		super(*args, &block)

@@ -2,8 +2,8 @@ App.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
       templateUrl: '/views/main.html',
-      title: 'Indelible — Make a mark',
-      controller: 'MainCtrl'
+      title: 'Indelible — Pen and paper for the Internet',
+      controller: 'MainController'
     })
     .when('/register', {
       templateUrl: '/views/users/new.html',
