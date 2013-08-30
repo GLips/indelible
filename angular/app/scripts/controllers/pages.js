@@ -5,6 +5,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   var action = $route.current.$$route.action;
 
   $scope.index = function() {
+    $scope.now = Date.now();
     $scope.pages = Page.get(function(data) {
       if(typeof Page.saved_page != 'undefined' && typeof data.pages != 'undefined')
       {
@@ -75,7 +76,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
 
   $scope.openView = function(id) {
-    $location.path('page/' + id);
+    $location.path('pages/' + id);
   }
 
   if(actions.indexOf(action) != -1)

@@ -34,7 +34,7 @@ App.config(function ($routeProvider, $locationProvider) {
       title: 'New Page',
       controller: 'PagesController'
     })
-    .when('/page/:id', {
+    .when('/pages/:id', {
       templateUrl: '/views/pages/new.html',
       action: 'view',
       title: 'View Page',
