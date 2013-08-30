@@ -5,7 +5,7 @@
   <div class="pages-list-desc" data-ng-show="pages.length == 0">
     You have no pages stored yet.
   </div>
-  <div class="entry" data-ng-click="openView(page.id)" data-ng-class="{'saved-page': page.saved}" data-ng-class-even="'even-entry'" data-ng-class-odd="'odd-entry'" data-ng-repeat="page in pages">
+  <div class="entry" data-ng-click="openView(page.id)" data-ng-class="{'saved-page': page.saved, 'public-page': page.is_public}" data-ng-repeat="page in pages">
     <div class="page-link"><span class="page-saved-alert" data-ng-show="page.saved">{{page.saved_message}}</span>{{page.content | clearMaps | cut:true:60 }}</div>
     <div class="page-date">{{page.created_at | date:'fullDate'}}</div>
   </div>
