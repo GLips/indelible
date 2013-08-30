@@ -24,13 +24,13 @@ server 'indelibleapp.com', :app, :web, :db, :primary => true
 
 after 'deploy:update_code', 'deploy:migrate'
 
-after 'deploy', 'bower:init'
-after 'deploy', 'grunt:init_resources'
-after 'deploy', 'grunt:build'
-after 'deploy', 'deploy:analytics'
-after 'deploy', 'deploy:index'
-after 'deploy', 'deploy:restart'
-after 'deploy', 'deploy:cleanup'
+after 'deploy:update_code', 'bower:init'
+after 'deploy:update_code', 'grunt:init_resources'
+after 'deploy:update_code', 'grunt:build'
+after 'deploy:update_code', 'deploy:analytics'
+after 'deploy:update_code', 'deploy:index'
+after 'deploy:update_code', 'deploy:restart'
+after 'deploy:update_code', 'deploy:cleanup'
 
 def remote_file_exists?(path)
 	results = []
