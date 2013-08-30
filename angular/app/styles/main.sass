@@ -73,23 +73,23 @@ body
 	cursor: pointer
 	color: #000
 	background-color: #FFF
-	border: 2px solid #ddd
-	border-top: 2px solid #ddd
-	border-bottom: 5px solid #ddd
-	+transition-property(background-color, color, border-color, font-size, padding)
+	//border: 1px solid #ccc
+	//border-top: 2px solid #eee
+	//border-bottom: 2px solid #eee
+	border-left: 4px solid #ccc
+	+transition-property(background-color, color, border-color, font-size, padding, margin)
 	+transition-duration(0.15s)
-	padding: 15px 20px
+	padding: 20px
 	min-height: 20px
-	margin-bottom: 15px
-	+box-shadow(0 1px 2px rgba(0,0,0,0.35))
 	&:hover
 		.page-saved-alert
-			color: #fff
-		padding: 20px 20px
+			color: #FFF
+		.page-date
+			color: #FFF
 		border-color: #189328
-		font-size: 20px
 		color: #FFF
 		background-color: #1CAD2F
+		padding-left: 40px
 
 .spaced
 	margin: 20px 0

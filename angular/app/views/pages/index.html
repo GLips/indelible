@@ -1,9 +1,7 @@
 <div class="page-index">
-  <div class="pages-list-desc" data-ng-show="pages.length > 0">
-    Keep on writing—<a href="/pages/new">start a new page</a>.
-  </div>
-  <div class="pages-list-desc" data-ng-show="pages.length == 0">
-    You have no pages stored yet.
+  <div class="entry new-page-entry" data-ng-click="openView('new')">
+    <div class="page-link"><span data-ng-show="pages.length == 0">No entries yet—</span>Start a new page</div>
+    <div class="page-date">{{now | date:'fullDate'}}</div>
   </div>
   <div class="entry" data-ng-click="openView(page.id)" data-ng-class="{'saved-page': page.saved, 'public-page': page.is_public}" data-ng-repeat="page in pages">
     <div class="page-link"><span class="page-saved-alert" data-ng-show="page.saved">{{page.saved_message}}</span>{{page.content | clearMaps | cut:true:60 }}</div>
