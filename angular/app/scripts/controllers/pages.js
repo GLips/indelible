@@ -65,7 +65,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
         Page.saved_message = "Stored "+ $scope.total_words +" words";
         Flash.hold();
       }
-    }, function(error) { console.log(error); });
+    }, function(error) { console.log('Update error: ' + error); });
   };
 
   $scope.destroy = function() {
@@ -75,8 +75,12 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
 
 
-  $scope.openView = function(id) {
-    $location.path('pages/' + id);
+  $scope.openView = function(event, id) {
+    // Detect middle click
+    if (event.which == 2 || (event.ctrlKey || event.metaKey))
+      return
+    else
+      $location.path('pages/' + id);
   }
 
   if(actions.indexOf(action) != -1)
