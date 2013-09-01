@@ -3,34 +3,37 @@
 var myModule = angular.module('indelibleApp');
 
 myModule.directive('blinker', function($timeout) {
-  return function(scope, elm) {
-    var timeoutId,
-      shown = true;
+  return {
+    scope: { active: '=blinker' },
+    link: function($scope, elm) {
+      var timeoutId,
+        shown = false;
 
-    function init() {
-      timeoutId = $timeout(function() {
-        blink();
-        init();
-      }, 500);
-    }
-
-    function blink() {
-      if(shown)
-      {
-        elm.hide();
+      function init() {
+        timeoutId = $timeout(function() {
+          blink();
+          init();
+        }, 500);
       }
-      else
-      {
-        elm.show();
+
+      function blink() {
+        if(shown || !$scope.active)
+        {
+          elm.hide();
+        }
+        else
+        {
+          elm.show();
+        }
+        shown = !shown;
       }
-      shown = !shown;
+
+      elm.bind('$destroy', function() {
+        $timeout.cancel(timeoutId);
+      });
+
+      init();
     }
-
-    elm.bind('$destroy', function() {
-      $timeout.cancel(timeoutId);
-    });
-
-    init();
   };
 });
 

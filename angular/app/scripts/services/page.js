@@ -8,18 +8,33 @@ myModule.factory ('Page', function($resource, Maps, Session) {
   page.prototype.word_count = 0;
   page.prototype.max_word_count = 0;
   page.prototype.last_word_length = 0;
+
+  page.prototype.init = function() {
+    this.is_public = (this.is_public) ? true : false;
+    this.calculate_word_count();
+  }
+
   page.prototype.is_owned_by_current_user = function() {
     return Session.loggedIn && Session.currentUser.id == this.user_id;
   }
 
   page.prototype.add_character = function(c) {
-		this.content += c;
+    if(this.new || this.is_owned_by_current_user())
+		  this.content += c;
   }
 
   page.prototype.try_backspace = function() {
     if(!this.delete_whitespace()) {
       this.delete_word();
     }
+  }
+
+  page.prototype.toggle_status = function() {
+    this.is_public = !this.is_public;
+  }
+
+  page.prototype.status = function() {
+    return (this.is_public) ? 'public' : 'private';
   }
 
   page.prototype.delete_word = function() {

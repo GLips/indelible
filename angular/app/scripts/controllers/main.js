@@ -10,7 +10,7 @@ myModule.controller('MainController', function ($scope, $location, $rootScope, P
       }
       else
       {
-        $scope.page = new Page({ content: '' });
+        $scope.page = new Page({ content: '', new: true });
       }
   });
 myModule.$inject = ['$scope', '$location', '$rootScope', 'Page', 'Session', 'Flash'];

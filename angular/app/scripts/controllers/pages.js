@@ -20,8 +20,8 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   };
 
   $scope.new = function() {
-    $scope.page = new Page({content: ''});
-    Page.original_word_count = $scope.page.calculate_word_count();
+    $scope.page = new Page({content: '', new: true});
+    $scope.page.init();
     $scope.function = $scope.create;
   };
 
@@ -30,7 +30,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $scope.page = new Page(data.page);
-				$scope.page.calculate_word_count();
+				$scope.page.init();
         $scope.total_words = $scope.page.get_word_count();
         $scope.word_count = 0;
       }
@@ -72,9 +72,6 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   $scope.destroy = function() {
     $scope.page.$destroy();
   };
-
-
-
 
   $scope.openView = function(event, id) {
     // Detect middle click

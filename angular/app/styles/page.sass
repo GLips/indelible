@@ -4,7 +4,9 @@ $baseFontFamily: 'Jacquest Francois'
 
 .page
 	padding: 100px 140px
-	+box-shadow(0 0 10px rgba(0,0,0,0.5))
+	+box-shadow(0 0 3px rgba(0,0,0,0.5))
+	border: 1px solid #999
+	border-top: none
 
 .page-store-button
 	margin: 20px auto
@@ -14,6 +16,9 @@ $baseFontFamily: 'Jacquest Francois'
 	text-align: center
 	margin-top: 60px
 	font-size: 28px
+
+.editor-cursor
+	display: none
 
 .page-list
 	width: 100%
@@ -33,6 +38,26 @@ $baseFontFamily: 'Jacquest Francois'
 
 .public-page
 	border-color: #189328
+
+.public-toggle
+	background-color: #0A0
+	border-bottom: 1px solid #080
+	&:hover
+		background-color: #080
+
+.private-toggle
+	background-color: #A00
+	border-bottom: 1px solid #800
+	&:hover
+		background-color: #800
+
+.public-private-toggle
+	text-align: center
+	font-size: 20px
+	padding: 10px 0
+	margin: 10px auto 0
+	cursor: pointer
+	color: #FFF
 
 .new-page-entry
 	background-color: #EF9033

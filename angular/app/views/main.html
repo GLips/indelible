@@ -1,16 +1,16 @@
 <div class="content spaced">
-  <span class="lead"><a href="/pages/1">not public</a> <a href="/pages/6">public</a> Indelible is an online journal that will make you a better writer.</span><br>
+  <span class="lead">Indelible is an online journal that will make you a better writer.</span><br>
   <br>
   It&#8217;s just like pen and paper&mdash;once you put a word down, it&#8217;s there forever. There&#8217;s no jumping around to make edits
   or juggling threads of logic. Your writing is focused on only one thing&mdash;<strong>your current thought</strong>. And that focus is
   the key to improvement. It&#8217;s a meditative experience.<br>
   <br>
-  Don&#8217;t take my word for it though. Slow down for a second and write a bit about your day:
+  Don&#8217;t take my word for it though. Lend yourself some time right now and write about your day.
 </div>
 
 <div data-greenlight style="background:#00aa00;height:2px;width:{{width}}%;"></div>
 <div class="content page editor" data-textarea>
-  <span data-ng-bind-html="page.content"></span><span class="editor-cursor" data-blinker>|</span>
+  <span data-ng-bind-html="page.content"></span><span class="editor-cursor" data-blinker="page.new || page.is_owned_by_current_user()">|</span>
   &nbsp;
 </div>
 
