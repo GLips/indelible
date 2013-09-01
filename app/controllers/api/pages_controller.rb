@@ -32,8 +32,7 @@ class Api::PagesController < ApplicationController
 
 	def update
 		if @page.update_attributes(page_params)
-			#add_success 'Page stored.'
-			render json: { saved_page: @page.id }
+			render json: { saved_page: @page.id, is_public: @page.is_public }
 		else
 			@page.errors.full_messages.each do |m|
 				add_error m
