@@ -1,12 +1,14 @@
 $baseFontFamily: 'Jacquest Francois'
-@import "bootstrap-sass/lib/bootstrap"
+@import "bootstrap-sass/lib/mixins"
 @import "compass/css3/transition"
+//@import "main"
 
 .page
 	padding: 100px 140px
-	+box-shadow(0 0 3px rgba(0,0,0,0.5))
-	border: 1px solid #999
-	border-top: none
+	//+box-shadow(0 0 3px rgba(0,0,0,0.5))
+
+.page-index
+	+box-shadow(0 0 2px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2))
 
 .page-store-button
 	margin: 20px auto

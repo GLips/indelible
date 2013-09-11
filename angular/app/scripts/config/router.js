@@ -2,7 +2,7 @@ App.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
       templateUrl: '/views/main.html',
-      title: 'Indelible — Pen and paper for the Internet',
+      title: 'Pen and paper for the Internet',
       controller: 'MainController'
     })
     .when('/register', {
