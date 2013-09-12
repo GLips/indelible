@@ -37,6 +37,7 @@ myModule.factory('UserRegistration', function($http, Flash) {
   };
 
   UserRegistration.prototype.$save = function() {
+    Flash.clear();
     return $http.post(apiPrefix + '/users.json', {
       "user" : {
         "email" : this.email,
