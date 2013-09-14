@@ -41,25 +41,41 @@ $baseFontFamily: 'Jacquest Francois'
 .public-page
 	border-color: #189328
 
-.public-toggle
-	background-color: #0A0
-	border-bottom: 1px solid #080
-	&:hover
-		background-color: #080
-
-.private-toggle
-	background-color: #A00
-	border-bottom: 1px solid #800
-	&:hover
-		background-color: #800
-
 .public-private-toggle
-	text-align: center
+	background-color: #EEE
+	+border-top-radius(4px)
 	font-size: 20px
-	padding: 10px 0
+	padding: 0 20px
 	margin: 10px auto 0
+	line-height: 40px
+	height: 45px
 	cursor: pointer
-	color: #FFF
+	color: #000
+	&:hover
+		.private-choice
+			background-color: #000
+			color: #FFF
+		.public-choice
+			background-color: #000
+			color: #FFF
+	.private-choice.active
+		border-bottom: 5px solid #800
+		font-size: 20px
+	.public-choice.active
+		border-bottom: 5px solid #080
+		font-size: 20px
+
+.public-choice
+	display: inline-block
+	font-size: 0px
+	+transition-property(color, background-color, font-size)
+	+transition-duration(0.15s)
+
+.private-choice
+	display: inline-block
+	font-size: 0px
+	+transition-property(color, background-color, font-size)
+	+transition-duration(0.15s)
 
 .new-page-entry
 	background-color: #EF9033
