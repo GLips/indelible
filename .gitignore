@@ -23,3 +23,5 @@
 
 # This file is automatically created on deploy
 /app/views/home/index.html.erb
+
+.DS_Store

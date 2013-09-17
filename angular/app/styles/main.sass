@@ -23,6 +23,21 @@ body
 li
 	line-height: 1.5em
 
+select
+	word-wrap: normal
+
+label
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+	line-height: 30px
+	color: #666
+
+input[type="text"]
+	+box-shadow(inset 0 1px 6px rgba(0,0,0,0.1))
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+
+.fake-link
+	color: #0088cc
+
 .indelible-main
 	padding: 0 0 20px
 
@@ -75,8 +90,11 @@ li
 	line-height: 1.4em
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 
-.center
+.center-align
 	text-align: center
+
+.center
+	margin: 0 auto
 
 .logo-link
 	display: block
@@ -130,4 +148,4 @@ li
 	//padding: 60px 140px
 	+border-radius(5px)
 	background: #fff
-	//background: url('/images/static-bg.png')
+//background: url('/images/static-bg.png')

@@ -6,7 +6,7 @@ angular.module('indelibleApp.directives', []);
 angular.module('indelibleApp.filters', []);
 angular.module('indelibleApp.controllers', ['ngCookies']);
 
-var App = angular.module('indelibleApp', ['ngResource', 'ngRoute', 'ngSanitize', 'indelibleApp.services', 'indelibleApp.resources', 'indelibleApp.controllers', 'indelibleApp.filters']);
+var App = angular.module('indelibleApp', ['ngResource', 'ngRoute', 'ngSanitize', 'indelibleApp.services', 'indelibleApp.resources', 'indelibleApp.controllers', 'indelibleApp.filters', 'ui.bootstrap']);
 
 App.run(function($route, $rootScope)
 {

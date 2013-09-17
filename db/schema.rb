@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821031129) do
+ActiveRecord::Schema.define(version: 20130916015637) do
 
   create_table "pages", force: true do |t|
     t.text     "content"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20130821031129) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_public",  default: false
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "current_period_end"
+    t.datetime "current_period_start"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -34,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130821031129) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

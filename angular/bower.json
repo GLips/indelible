@@ -11,7 +11,8 @@
     "angular-cookies": "~1.2.0-rc.1",
     "angular-sanitize": "~1.2.0-rc.1",
     "angular-route": "~1.2.0-rc.1",
-    "angular-ui": "~0.4.0"
+    "angular-ui": "~0.4.0",
+    "angular-ui-bootstrap-bower": "~0.6.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0-rc.1",

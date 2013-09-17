@@ -41,6 +41,14 @@ App.config(function ($routeProvider, $locationProvider) {
       controller: 'PagesController'
     })
 
+    // Users
+    .when('/users/account', {
+      templateUrl: '/views/users/index.html',
+      action: 'index',
+      title: 'Edit Your Profile',
+      controller: 'UsersController'
+    })
+
     .otherwise({
       redirectTo: '/'
     });

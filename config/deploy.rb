@@ -28,6 +28,7 @@ after 'deploy:update_code', 'bower:init'
 after 'deploy:update_code', 'grunt:init_resources'
 after 'deploy:update_code', 'grunt:build'
 after 'deploy:update_code', 'deploy:analytics'
+after 'deploy:update_code', 'deploy:stripe'
 after 'deploy:update_code', 'deploy:index'
 after 'deploy:update_code', 'deploy:restart'
 after 'deploy:update_code', 'deploy:cleanup'
@@ -88,6 +89,12 @@ namespace :deploy do
 	task :analytics do
 		run "cd #{release_path} && sed -i 's/UA-XXXXX-X/UA-18334263-4/g' #{public_index}"
 		run "cp #{shared_path}/google* #{release_path}/public"
+	end
+
+
+	desc 'Switch Stripe publishable key for production'
+	task :stripe do
+		run "cd #{release_path} && sed -i 's/pk_yBk1sb8goPw2BC41obwfz46sf9jeT/pk_5Z8lBjxCpL0SCCORteFOd9CL2Miv4/g' #{public_index}"
 	end
 
 	desc 'Move the static index HTML file inside Rails so cookies are set properly'

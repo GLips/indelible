@@ -1,0 +1,58 @@
+<div class="content static padded clearfix">
+  <h1>Manage Subscription</h1>
+  <div data-ng-show="subscription.active">
+    <form class="subscription-forms" data-ng-submit="unsubscribe()" action="" method="POST" id="unsubscribe_form">
+      <button class="btn btn-large btn-danger" type="submit">Unsubscribe</button>
+    </form>
+  </div>
+  <div data-ng-hide="subscription.active">
+    <p>Indelible will never lock you out of your content&mdash;anything you've written will always be accessible, even after the trial. If you sign up before your trial runs out, any extra days will be credited to your account.<br>
+      <br>
+       Membership is only $15/month.</p>
+    <div class="offset2 span8" data-ng-hide="subscription.active">
+      <div class="center center-align">
+        <button class="btn btn-success btn-large" data-ng-click="show_subscription()">Sign me up!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="credit-card content span6 offset3" data-ng-show="show_form">
+    <form class="subscription-forms span12 clearfix" data-ng-submit="subscribe()" action="" method="POST" id="subscription_form">
+      <div class="payment-errors">{{subscription_errors}}</div>
+
+      <div class="control-group">
+        <label class="control-label">
+          Cardholder Name
+        </label>
+        <div class="controls">
+          <input class="span12" type="text" size="20" data-stripe="name"/>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <label class="control-label">
+          Card Number
+        </label>
+        <div class="controls">
+          <input class="span12" type="text" size="20" data-stripe="number"/>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="span8">
+          <label>Expiration</label>
+          <input type="text" class="span6" placeholder="MM" data-stripe="exp-month"/>
+          <input type="text" class="span6" placeholder="YYYY" data-stripe="exp-year">
+        </div>
+        <div class="span4">
+          <label>
+            <span class="fake-link" href="#" data-tooltip="Three or four digits, often found on the back of your card.">CVC</span>
+          </label>
+          <input class="span12" type="text" size="4" data-stripe="cvc"/>
+        </div>
+      </div>
+
+      <button class="center btn btn-large btn-success" type="submit" style="display:block;">Subscribe</button>
+    </form>
+  </div>

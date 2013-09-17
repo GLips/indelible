@@ -54,7 +54,7 @@
                 <li><a href="/register">Register</a></li>
               </ul>
               <ul class="usercorner-list" data-ng-switch-when="true">
-                <li><a href="/pages/new">New Page</a></li>
+                <li><a href="/users/account">Account</a></li>
                 <li><a href="#" data-ng-click="destroy()">Log out</a></li>
               </ul>
             </div>
@@ -78,22 +78,26 @@
 
         <script src="/bower_components/jquery/jquery.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+        <script type="text/javascript">
+          Stripe.setPublishableKey('pk_yBk1sb8goPw2BC41obwfz46sf9jeT');
+        </script>
 
-        <!-- build:js /scripts/plugins.js -->
-        <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
-        <!-- endbuild -->
+        <!--&lt;!&ndash; build:js /scripts/plugins.js &ndash;&gt;-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>-->
+        <!--&lt;!&ndash; endbuild &ndash;&gt;-->
 
         <!-- build:js /scripts/modules.js -->
         <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -101,6 +105,8 @@
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/angular-ui/build/angular-ui.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) /scripts/scripts.js -->
@@ -114,7 +120,8 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/registrations.js"></script>
         <script src="scripts/controllers/sessions.js"></script>
-				<script src="scripts/controllers/pages.js"></script>
+        <script src="scripts/controllers/pages.js"></script>
+        <script src="scripts/controllers/users.js"></script>
         <script src="scripts/directives/textarea.js"></script>
         <script src="scripts/directives/greenlight.js"></script>
         <script src="scripts/directives/blinker.js"></script>
@@ -125,7 +132,8 @@
         <script src="scripts/services/maps.js"></script>
         <script src="scripts/services/session.js"></script>
         <script src="scripts/services/flash.js"></script>
-				<script src="scripts/resources/user.js"></script>
+        <script src="scripts/resources/user.js"></script>
+        <script src="scripts/resources/subscription.js"></script>
         <!-- endbuild -->
 </body>
 </html>

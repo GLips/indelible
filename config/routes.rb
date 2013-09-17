@@ -4,10 +4,11 @@ Indelibile::Application.routes.draw do
 
 	scope :api do
 		resources :pages, controller: 'api/pages'
+		resource :subscriptions, controller: 'api/subscriptions'
 	end
 
-	#get 'page/*a' => 'home#index'
 	get '*pages' => 'home#index'
+	get '*users' => 'home#index'
 
 	root to: 'home#index'
 end
