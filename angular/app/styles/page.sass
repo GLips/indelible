@@ -4,15 +4,25 @@ $baseFontFamily: 'Jacquest Francois'
 //@import "main"
 
 .page
+	padding: 5% 15%
+	margin-bottom: 500px
+
+.page-teaser
 	padding: 7% 10%
-	//+box-shadow(0 0 3px rgba(0,0,0,0.5))
 
 .page-index
-	+box-shadow(0 0 2px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2))
+	margin-bottom: 300px
 
 .page-store-button
-	margin: 20px auto
-	display: block
+	margin: 10px 20px
+	float: right
+
+.page-editor-bar
+	position: fixed
+	width: 100%
+	background: rgba(255,255,255,0.75)
+	bottom: 0
+	left: 0
 
 .pages-list-desc
 	text-align: center
@@ -20,7 +30,9 @@ $baseFontFamily: 'Jacquest Francois'
 	font-size: 28px
 
 .editor-cursor
-	display: none
+	display: inline-block
+	width: 0px
+	font-family: "PT Sans", sans-serif
 
 .page-list
 	width: 100%
@@ -39,18 +51,20 @@ $baseFontFamily: 'Jacquest Francois'
 	font-family: Helvetica, Arial, sans-serif
 	margin-top: 5px
 
+.page-content
+	white-space: pre-wrap
+
 .public-page
 	border-color: #189328
 
 .public-private-toggle
-	background-color: #EEE
 	+border-top-radius(4px)
 	font-size: 20px
 	padding: 0 20px
 	line-height: 40px
 	height: 45px
+	display: inline-block
 	cursor: pointer
-	color: #000
 	&:hover
 		.private-choice
 			background-color: #000

@@ -19,11 +19,11 @@ myModule.directive('blinker', function($timeout) {
       function blink() {
         if(shown || !$scope.active)
         {
-          elm.hide();
+          elm.css('visibility', 'hidden');
         }
         else
         {
-          elm.show();
+          elm.css('visibility', 'visible');
         }
         shown = !shown;
       }

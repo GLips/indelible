@@ -14,8 +14,7 @@ html, body
 	margin: 0px
 
 body
-	background-color: #f1f1f1
-	background: url('/images/wood.jpg')
+	background-color: #fff
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 	color: #222
 	font-size: 16px
@@ -57,19 +56,28 @@ input[type="text"]
 	letter-spacing: -1px
 
 .logo
-	background-image: url('/images/logo.png')
+	background-image: url('/images/logo-icon.png')
 	background-repeat: no-repeat
 	background-position: center
-	width: 210px
-	height: 50px
-	margin: 0
+	width: 65px
+	height: 55px
+	margin: 10px
+	float: left
+	@include respond-to('tablet-desktop')
+		position: absolute
+		top: 20px
+		left: 20px
+		margin: 0
 
 .usercorner
 	margin: 10px
-	background: linear-gradient(to bottom, #f1f1f1, #eee)
-	+border-radius(4px)
-	border-bottom: 2px solid #bbb
-	padding: 10px 20px
+	padding: 10px 0
+	text-align: right
+	@include respond-to('tablet-desktop')
+		text-align: left
+		position: absolute
+		left: 15px
+		top: 65px
 	&:after
 		display: block
 		content: " "
@@ -79,11 +87,8 @@ input[type="text"]
 .usercorner-list
 	list-style-type: none
 	margin: 0
-	li
-		float: left
-		margin-left: 10px
-		&:first-child
-			margin-left: 0
+	margin-right: 10px
+	font-size: 14px
 
 .small
 	font-size: 14px
@@ -129,6 +134,8 @@ input[type="text"]
 
 .padded
 	padding: 6% 10%
+	@include respond-to('phone')
+		padding: 6% 0%
 
 .content
 	+box-sizing(border-box)
@@ -140,12 +147,18 @@ input[type="text"]
 	font-size: 24px
 	font-family: 'Jacquest Francois'
 	word-wrap: break-word
-	+box-shadow(0 0 2px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2))
+	@include respond-to('phone')
+		font-size: 20px
 
 .static
-	width: 90%
-	margin: 20px 5%
+	width: 86%
+	margin: 20px 7%
 	//padding: 60px 140px
 	+border-radius(5px)
 	background: #fff
-//background: url('/images/static-bg.png')
+
+.border-box
+	padding: 2% 5%
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15)
+	border-radius: 3px
+	border: 1px solid #CCC

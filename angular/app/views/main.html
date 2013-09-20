@@ -1,4 +1,4 @@
-<div class="content static spaced" style="margin-top:0px;">
+<div class="content static spaced">
   <div class="prompt-box">
     <div class="lead">Write like Hemingway</div>
     <div style="z-index:100;position:relative;">Indelible is an online journal that will help you become a better writer.</div>
@@ -7,8 +7,6 @@
         Get started now
       </a>
     </div>
-    <div style="width:30px;height:100%;position:absolute;right:50px;top:0;background-image:url('/images/journal-string.png');"></div>
-    <!--<img style="position:absolute;right:0;top:0;height:234px;" src="/images/journal.png"/>-->
 
     <ul class="features-list">
       <li class="span4">
@@ -46,9 +44,8 @@
   Give yourself five uninterrupted minutes to try it right now. It&#8217;s a meditative experience.
 </div>
 
-<div data-greenlight style="background:#00aa00;height:2px;width:{{width}}%;"></div>
-<div class="content page editor" data-textarea>
-  <span data-ng-bind-html="page.content"></span><span class="editor-cursor" data-blinker="page.new || page.is_owned_by_current_user()">|</span>
+<div class="content page-teaser editor home-page-editor" data-greenlight data-textarea>
+  <span class="page-content" data-ng-bind-html="page.content"></span><span class="editor-cursor" data-blinker="page.new || page.is_owned_by_current_user()">|</span>
   &nbsp;
 </div>
 

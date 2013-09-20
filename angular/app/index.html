@@ -39,18 +39,16 @@
       </div>
       <div class='flash-mask'></div>
     </div>
-    <div class="container">
-      <div class="row-fluid">
-        <div class="span8">
-          <h1 class='logo'><a class="logo-link" href="/"></a></h1>
+    <div class="">
+      <div class="row-fluid" style="position: relative;">
+        <div>
+          <h1 class='logo'><a class="logo-link" title="Indelible — Pen and paper for the internet" href="/"></a></h1>
         </div>
-        <div class="span4">
+        <div>
           <div class="usercorner" data-usercorner>
-            <span data-ng-bind-html="content"></span>
             <div data-ng-switch on="session.loggedIn">
               <ul class="usercorner-list" data-ng-switch-when="false">
                 <li><a href="/log_in">Log in</a></li>
-                <li>or</li>
                 <li><a href="/register">Register</a></li>
               </ul>
               <ul class="usercorner-list" data-ng-switch-when="true">

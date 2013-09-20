@@ -22,34 +22,34 @@
       <div class="payment-errors">{{subscription_errors}}</div>
 
       <div class="control-group">
-        <label class="control-label">
+        <label class="control-label" for="name">
           Cardholder Name
         </label>
         <div class="controls">
-          <input class="span12" type="text" size="20" data-stripe="name"/>
+          <input class="span12" id="name" type="text" size="20" data-stripe="name"/>
         </div>
       </div>
 
       <div class="controls-row">
-        <label class="control-label">
+        <label class="control-label" for="number">
           Card Number
         </label>
         <div class="controls">
-          <input class="span12" type="text" size="20" data-stripe="number"/>
+          <input class="span12" id="number" type="text" size="20" data-stripe="number"/>
         </div>
       </div>
 
       <div class="controls-row">
         <div class="span8">
-          <label>Expiration</label>
-          <input type="text" class="span6" placeholder="MM" data-stripe="exp-month"/>
+          <label for="exp-month">Expiration</label>
+          <input type="text" class="span6" id="exp-month" placeholder="MM" data-stripe="exp-month"/>
           <input type="text" class="span6" placeholder="YYYY" data-stripe="exp-year">
         </div>
         <div class="span4">
-          <label>
-            <span class="fake-link" href="#" data-tooltip="Three or four digits, often found on the back of your card.">CVC</span>
+          <label for="cvc">
+            <span class="fake-link" data-tooltip="Three or four digits, often found on the back of your card.">CVC</span>
           </label>
-          <input class="span12" type="text" size="4" data-stripe="cvc"/>
+          <input class="span12" id="cvc" type="text" size="4" data-stripe="cvc"/>
         </div>
       </div>
 

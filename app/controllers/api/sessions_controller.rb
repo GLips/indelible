@@ -15,7 +15,6 @@ class Api::SessionsController < Devise::SessionsController
 		self.resource = warden.authenticate!(auth_options)
 		set_flash_message(:notice, :signed_in) if is_navigational_format?
 		sign_in(resource_name, resource)
-		add_success find_message(:signed_in)
 		render json: { resource: resource }
 	end
 
@@ -23,6 +22,7 @@ class Api::SessionsController < Devise::SessionsController
 	def destroy
 		sign_out
 		cookies.delete(:_indelible_session)
+		cookies.delete(:_indelibile_session)
 		reset_session
 		add_success find_message(:signed_out)
 		render json: { logged_out: true }

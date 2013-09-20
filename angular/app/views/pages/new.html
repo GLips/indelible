@@ -1,11 +1,13 @@
 <div data-greenlight></div>
-<div class="public-private-toggle" data-ng-show="page.new || page.is_owned_by_current_user()" data-ng-click="page.toggle_status()">
-  A
-  <div class="public-choice" data-ng-class="{'active': page.status() == 'public'}">public</div><div class="private-choice" data-ng-class="{'active': page.status() == 'private'}">private</div>
-  page with {{total_words}} words.
-</div>
 <div class="content page editor" data-textarea>
-  <span data-ng-bind-html="page.content"></span><wbr><span class="editor-cursor" data-blinker="page.new || page.is_owned_by_current_user()">|</span>
+  <span class="page-content" data-ng-bind-html="page.content"></span><wbr><span class="editor-cursor" data-blinker="page.new || page.is_owned_by_current_user()">|</span>
   &nbsp;
 </div>
-<button class="btn btn-success page-store-button" data-ng-show="page.new || page.is_owned_by_current_user()" data-ng-click='function()'>Store {{total_words}} words</button>
+<div class="page-editor-bar clearfix">
+  <div class="fake-link public-private-toggle" data-ng-show="page.new || page.is_owned_by_current_user()" data-ng-click="page.toggle_status()">
+    A
+    <div class="public-choice" data-ng-class="{'active': page.status() == 'public'}">public</div><div class="private-choice" data-ng-class="{'active': page.status() == 'private'}">private</div>
+    page with {{total_words}} words.
+  </div>
+  <button class="btn btn-success page-store-button" data-ng-show="page.new || page.is_owned_by_current_user()" data-ng-click='function()'>Store {{total_words}} words</button>
+</div>
