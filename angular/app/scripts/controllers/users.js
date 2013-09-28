@@ -1,6 +1,6 @@
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('UsersController', function($scope, $route, $location, $rootScope, UserSubscription, Flash, Session) {
+myModule.controller('UsersController', function($scope, $route, $location, $rootScope, UserSubscription, Flash, Session, $analytics) {
   var actions = ['index'];
   var action = $route.current.$$route.action;
 
@@ -21,6 +21,8 @@ myModule.controller('UsersController', function($scope, $route, $location, $root
   $scope.unsubscribe = function() {
     UserSubscription.delete(function(data) {
       $scope.subscription = data.subscription
+      $analytics.eventTrack("Unsubscribe");
+      mixpanel.people.set({ "Plan": "Trial" });
     });
   };
 
@@ -40,6 +42,8 @@ myModule.controller('UsersController', function($scope, $route, $location, $root
           {
             Flash.hold();
             $scope.subscription = data.subscription;
+            $analytics.eventTrack("Subscribe");
+            mixpanel.people.set({ "Plan": "Subscription" });
             $location.path($rootScope.path('PagesController'));
           }
         })
@@ -51,4 +55,4 @@ myModule.controller('UsersController', function($scope, $route, $location, $root
     $scope[action]();
 });
 
-myModule.$inject = ['$scope', '$route', '$location', '$rootScope', 'UserSubscription', 'Flash', 'Session'];
+myModule.$inject = ['$scope', '$route', '$location', '$rootScope', 'UserSubscription', 'Flash', 'Session', '$analytics'];

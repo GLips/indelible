@@ -6,10 +6,14 @@ angular.module('indelibleApp.directives', []);
 angular.module('indelibleApp.filters', []);
 angular.module('indelibleApp.controllers', ['ngCookies']);
 
-var App = angular.module('indelibleApp', ['ngResource', 'ngRoute', 'ngSanitize', 'indelibleApp.services', 'indelibleApp.resources', 'indelibleApp.controllers', 'indelibleApp.filters', 'ui.bootstrap']);
+var App = angular.module('indelibleApp', ['ngResource', 'ngRoute', 'ngSanitize', 'indelibleApp.services', 'indelibleApp.resources', 'indelibleApp.controllers', 'indelibleApp.filters', 'ui.bootstrap', 'angulartics', 'angulartics.mixpanel']);
 
-App.run(function($route, $rootScope)
+App.run(function($route, $rootScope, Session)
 {
+  if(Session.loggedIn) {
+    mixpanel.identify(Session.currentUser.email);
+  }
+
   $rootScope.path = function(controller, params)
   {
     // Iterate over all available routes
@@ -30,4 +34,4 @@ App.run(function($route, $rootScope)
   };
 });
 
-App.$inject = ['$route', '$rootScope', '$location'];
+App.$inject = ['$route', '$rootScope', 'Session'];

@@ -1,6 +1,6 @@
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('RegistrationsController', function($scope, $location, Session, Flash, $cookieStore) {
+myModule.controller('RegistrationsController', function($scope, $location, Session, Flash, $cookieStore, $analytics) {
 
   $scope.registration = Session.userRegistration;
 
@@ -11,6 +11,14 @@ myModule.controller('RegistrationsController', function($scope, $location, Sessi
         {
           $cookieStore.put('_indelible_session', data.resource);
           Session.login(data.resource);
+          mixpanel.people.set({
+            "$email": data.resource.email,
+            "$created": data.resource.created_at,
+            "$last_login": new Date(),
+            "Plan": "Trial"
+          });
+          mixpanel.alias(data.resource.email);
+          $analytics.eventTrack('Registration');
           $location.path('/pages/new');
         }
       });
@@ -22,4 +30,4 @@ myModule.controller('RegistrationsController', function($scope, $location, Sessi
 
 });
 
-myModule.$inject = ['$scope', '$location', 'Session', 'Flash', '$cookieStore'];
+myModule.$inject = ['$scope', '$location', 'Session', 'Flash', '$cookieStore', '$analytics'];

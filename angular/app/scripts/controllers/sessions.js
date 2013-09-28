@@ -1,6 +1,6 @@
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('SessionsController', function($scope, Flash, $location, $cookieStore, Session, $rootScope) {
+myModule.controller('SessionsController', function($scope, Flash, $location, $cookieStore, Session, $rootScope, $analytics) {
 
   $scope.session = Session.userSession;
 
@@ -14,6 +14,8 @@ myModule.controller('SessionsController', function($scope, Flash, $location, $co
             $location.path($rootScope.path('PagesController'));
             Flash.hold();
             Session.login(data.resource);
+            $analytics.eventTrack("Log in");
+            mixpanel.identify(data.resource.email);
           }
         });
     }
@@ -22,4 +24,4 @@ myModule.controller('SessionsController', function($scope, Flash, $location, $co
 
 });
 
-myModule.$inject = ['$scope', 'Flash', '$location', '$cookieStore', 'Session', '$rootScope'];
+myModule.$inject = ['$scope', 'Flash', '$location', '$cookieStore', 'Session', '$rootScope', '$analytics'];

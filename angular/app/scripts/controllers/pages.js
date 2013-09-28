@@ -1,6 +1,6 @@
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('PagesController', function($scope, $location, $route, $routeParams, $rootScope, Session, Flash, Page) {
+myModule.controller('PagesController', function($scope, $location, $route, $routeParams, $rootScope, Session, Flash, Page, $analytics) {
   var actions = ['index', 'new', 'view'];
   var action = $route.current.$$route.action;
 
@@ -44,10 +44,12 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   };
 
   $scope.create = function() {
+    var word_count = $scope.get_approximate_word_count();
     $scope.page.$save(function(data) {
       $scope.page = new Page(data.page);
       if(Flash.no_errors())
       {
+        $analytics.eventTrack("New Page", { word_count: word_count });
         $location.path($rootScope.path('PagesController'));
         Page.saved_page = data.saved_page;
         Page.saved_message = "Stored "+ $scope.total_words +" words";
@@ -57,9 +59,11 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   };
 
   $scope.update = function() {
+    var word_count = $scope.get_approximate_word_count();
     $scope.page.$update(function(data) {
       if(Flash.no_errors())
       {
+        $analytics.eventTrack("Update Page", { word_count: word_count });
         $location.path($rootScope.path('PagesController'));
         Page.saved_page = data.saved_page;
         var verb = (data.is_public) ? "Published" : "Stored";
@@ -72,6 +76,24 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   $scope.destroy = function() {
     $scope.page.$destroy();
   };
+
+  $scope.get_approximate_word_count = function() {
+    var wc = $scope.page.get_word_count();
+    if(wc < 100)
+      wc = "0-100";
+    else if(wc < 250)
+      wc = "100-250";
+    else if(wc < 500)
+      wc = "250-500";
+    else if(wc < 750)
+      wc = "500-750";
+    else if(wc < 1000)
+      wc = "750-1000";
+    else
+      wc = "1000+";
+
+    return wc;
+  }
 
   $scope.openView = function(event, id) {
     // Detect middle click
@@ -87,4 +109,4 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
 });
 
-myModule.$inject = ['$scope', '$location', '$route', '$routeParams', '$rootScope', 'Session', 'Flash', 'Page'];
+myModule.$inject = ['$scope', '$location', '$route', '$routeParams', '$rootScope', 'Session', 'Flash', 'Page', '$analytics'];

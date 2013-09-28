@@ -1,5 +1,7 @@
 App
-  .config(function($httpProvider) {
+  .config(function($httpProvider, $analyticsProvider) {
+    $analyticsProvider.virtualPageviews(true);
+
     $httpProvider.responseInterceptors.push(function() {
       return function(promise) {
         var numLoadings = 0;
@@ -24,4 +26,4 @@ App
 
   });
 
-App.$inject = ['$httpProvider', 'Flash', '$rootScope', '$route'];
+App.$inject = ['$httpProvider', 'Flash', '$rootScope', '$route', '$analyticsProvider'];

@@ -85,10 +85,12 @@ end
 
 namespace :deploy do
 
-	desc 'Switch GA placeholder code for production'
+	desc 'Switch GA placeholder code for production, put Mixpanel into production mode'
 	task :analytics do
 		run "cd #{release_path} && sed -i 's/UA-XXXXX-X/UA-18334263-4/g' #{public_index}"
 		run "cp #{shared_path}/google* #{release_path}/public"
+		run "cd #{release_path} && sed -i 's/mixpanel.set_config({ debug: true });//g' #{public_index}"
+		run "cd #{release_path} && sed -i 's/3e7e14568ebc1112d68125d48e1bab8b/70fed09fc5cb6ea84fea294eb05b24e8/g' #{public_index}"
 	end
 
 
