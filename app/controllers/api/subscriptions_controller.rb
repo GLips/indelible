@@ -17,8 +17,14 @@ class Api::SubscriptionsController < ApplicationController
 		require 'stripe'
 		if current_user.stripe_id
 			begin
+				update = {
+						plan: 'indelible'
+				}
+				if(current_user.trial_end_date.to_i > Time.zone.now.to_i)
+					update[:trial_end] = current_user.trial_end_date.to_i
+				end
 				customer = Stripe::Customer.retrieve(current_user.stripe_id)
-				customer.update_subscription(plan: 'indelible', trial_end: current_user.trial_end_date.to_i)
+				customer.update_subscription(update)
 				s = init_subscription(customer.subscription)
 				current_user.subscription.update(s)
 				add_success('You are now a happily subscribed Indelible user. Congratulations!')
@@ -27,12 +33,15 @@ class Api::SubscriptionsController < ApplicationController
 				add_error('Something went wrong processing your subscription. If you continue to have issues, contact graham@indelibleapp.com')
 			end
 		else
-			customer = Stripe::Customer.create(
+			update = {
 					card: @token,
 					plan: 'indelible',
-					email: current_user.email,
-					trial_end: current_user.trial_end_date.to_i
-			)
+					email: current_user.email
+			}
+			if(current_user.trial_end_date.to_i > Time.zone.now.to_i)
+				update[:trial_end] = current_user.trial_end_date.to_i
+			end
+			customer = Stripe::Customer.create(update)
 			current_user.stripe_id = customer.id
 			s = init_subscription(customer.subscription)
 			current_user.create_subscription(s)
