@@ -1,3 +1,5 @@
+'use strict';
+
 var myModule = angular.module('indelibleApp.resources');
 myModule.factory('UserSubscription', function($http, $resource) {
 
