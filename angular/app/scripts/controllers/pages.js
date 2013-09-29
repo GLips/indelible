@@ -1,6 +1,6 @@
 var myModule = angular.module('indelibleApp.controllers');
 
-myModule.controller('PagesController', function($scope, $location, $route, $routeParams, $rootScope, Session, Flash, Page, $analytics) {
+myModule.controller('PagesController', function($scope, $location, $route, $routeParams, $rootScope, Session, Flash, Page, $analytics, Parser) {
   var actions = ['index', 'new', 'view'];
   var action = $route.current.$$route.action;
 
@@ -20,7 +20,9 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   };
 
   $scope.new = function() {
+    $scope.parser = Parser;
     $scope.page = new Page({content: '', new: true});
+    $scope.parser.init({page: $scope.page, mode: Parser.NEW});
     $scope.page.init();
     $scope.function = $scope.create;
   };
@@ -30,6 +32,8 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $scope.page = new Page(data.page);
+        $scope.parser = Parser;
+        $scope.parser.init({page: $scope.page, mode: Parser.EDIT});
 				$scope.page.init();
         $scope.total_words = $scope.page.get_word_count();
         $scope.word_count = 0;
@@ -109,4 +113,4 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
 });
 
-myModule.$inject = ['$scope', '$location', '$route', '$routeParams', '$rootScope', 'Session', 'Flash', 'Page', '$analytics'];
+myModule.$inject = ['$scope', '$location', '$route', '$routeParams', '$rootScope', 'Session', 'Flash', 'Page', '$analytics', 'Parser'];

@@ -1,8 +1,9 @@
 <div data-greenlight></div>
 <div class="content page editor" data-textarea>
-  <span class="page-content" data-ng-bind-html="page.content"></span><wbr><span class="editor-cursor" data-blinker="page.new || page.is_owned_by_current_user()">|</span>
+  <span class="page-content" data-ng-bind-html="parser.output"></span><wbr><span class="editor-cursor" data-blinker="page.new || page.is_owned_by_current_user()">|</span>
   &nbsp;
 </div>
+
 <div class="page-editor-bar clearfix">
   <div class="fake-link public-private-toggle" data-ng-show="page.new || page.is_owned_by_current_user()" data-ng-click="page.toggle_status()">
     A

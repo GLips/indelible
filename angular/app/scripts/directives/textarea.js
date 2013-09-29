@@ -2,7 +2,7 @@
 
 var myModule = angular.module('indelibleApp');
 
-myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
+myModule.directive('textarea', function($document, Typertimer, Maps, Session, Parser) {
     return function($scope) {
 
 
@@ -27,6 +27,7 @@ myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
           Typertimer.update();
           $scope.page.add_character(character);
         }
+        Parser.render_output();
         $scope.total_words = $scope.page.calculate_word_count();
       };
 
@@ -64,4 +65,4 @@ myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
   }
 );
 
-myModule.$inject = ['$document', 'Typertimer', 'Maps', 'Session'];
+myModule.$inject = ['$document', 'Typertimer', 'Maps', 'Session', 'Parser'];
