@@ -2,15 +2,17 @@
 
 var myModule = angular.module('indelibleApp.services');
 
-myModule.factory ('Page', function($resource, Maps, Session) {
+myModule.factory ('Page', function($resource, Maps, Session, Paragraphs, Marks) {
   var page = $resource(apiPrefix + '/pages/:id', {id: '@id'}, { update: { method: 'PUT' } });
 
   page.prototype.word_count = 0;
   page.prototype.max_word_count = 0;
   page.prototype.last_word_length = 0;
+  page.prototype.paragraphs = [];
+  page.prototype.marks = Marks;
 
   page.prototype.init = function() {
-    this.is_public = (this.is_public) ? true : false;
+    this.paragraphs = new Paragraphs();
     this.calculate_word_count();
   }
 
@@ -19,8 +21,9 @@ myModule.factory ('Page', function($resource, Maps, Session) {
   }
 
   page.prototype.add_character = function(c) {
-    if(this.new || this.is_owned_by_current_user())
-		  this.content += c;
+    if(this.new || this.is_owned_by_current_user()) {
+		  this.paragraphs.add_character(c);
+    }
   }
 
   page.prototype.try_backspace = function() {
@@ -88,4 +91,4 @@ myModule.factory ('Page', function($resource, Maps, Session) {
 
 
 
-myModule.$inject = ['$resource', 'Maps', 'Session'];
+myModule.$inject = ['$resource', 'Maps', 'Session', 'Paragraphs'];

@@ -20,9 +20,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
   };
 
   $scope.new = function() {
-    $scope.parser = Parser;
-    $scope.page = new Page({content: '', new: true});
-    $scope.parser.init({page: $scope.page, mode: Parser.NEW});
+    $scope.page = new Page({new: true});
     $scope.page.init();
     $scope.function = $scope.create;
   };
@@ -32,8 +30,6 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
       if(Flash.no_errors())
       {
         $scope.page = new Page(data.page);
-        $scope.parser = Parser;
-        $scope.parser.init({page: $scope.page, mode: Parser.EDIT});
 				$scope.page.init();
         $scope.total_words = $scope.page.get_word_count();
         $scope.word_count = 0;
