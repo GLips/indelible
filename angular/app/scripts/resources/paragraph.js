@@ -2,7 +2,7 @@
 
 var myModule = angular.module('indelibleApp.resources');
 
-myModule.factory ('Paragraph', function($resource) {
+myModule.factory ('Paragraph', function($resource, Maps) {
   var paragraph = $resource(apiPrefix + '/paragraph/:id', {id: '@id'}, { update: { method: 'PUT' } });
 
   paragraph.prototype.content = "";
@@ -43,6 +43,10 @@ myModule.factory ('Paragraph', function($resource) {
     this.marks.splice(this.marks.indexOf(r), 1);
   };
 
+  paragraph.prototype.is_blank = function() {
+    return this.content == "";
+  }
+
   paragraph.prototype.sort_marks = function() {
     this.marks.sort(function(a, b) {
       if(a.start < b.start)
@@ -53,9 +57,28 @@ myModule.factory ('Paragraph', function($resource) {
     });
   };
 
+  paragraph.prototype.delete_word = function() {
+    this.content = this.content.substr(0, this.content.length - this.last_word_length);
+  }
+
+  paragraph.prototype.delete_whitespace = function() {
+    var content = this.content;
+
+    for(var k in Maps.whiteMap)
+    {
+      var w = Maps.whiteMap[k];
+      if(content.substr(content.length - w.length) === w)
+      {
+        this.content = content.substr(0, content.length - w.length);
+        return true;
+      }
+    }
+    return false;
+  }
+
   return paragraph;
 });
 
 
 
-myModule.$inject = ['$resource'];
+myModule.$inject = ['$resource', 'Maps'];
