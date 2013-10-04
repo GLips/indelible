@@ -20,7 +20,7 @@ myModule.factory ('Paragraphs', function(Paragraph, Collection, Maps) {
   }
 
   paragraphs.prototype.try_backspace = function() {
-    if(this.last_paragraph().is_blank()) {
+    if(this.last_paragraph().is_blank() && this.data.length > 1) {
       this.data.pop();
     }
     else if(!this.last_paragraph().delete_whitespace()) {
