@@ -14,7 +14,10 @@ myModule.directive('highlight', function($document, Marks, Parser, Range) {
       $element.mouseup(function() {
         var selection = window.getSelection(),
           scope = angular.element($element).scope(),
-          html_length = new XMLSerializer().serializeToString(selection.getRangeAt(0).cloneContents()).length;
+          serial = new XMLSerializer(),
+          html_length = serial.serializeToString(selection.getRangeAt(0).cloneContents()).length,
+          content = $scope.paragraph.content;
+
         if(selection.type == "Range" && angular.isDefined(scope.paragraph)) {
           var start = (selection.anchorOffset < selection.focusOffset) ? selection.anchorOffset : selection.focusOffset,
             r = selection.getRangeAt(0).cloneRange(),
@@ -23,9 +26,12 @@ myModule.directive('highlight', function($document, Marks, Parser, Range) {
 
           r.setStart(r.endContainer, 0);
           r.setEnd(r.endContainer, start);
-          start = new XMLSerializer().serializeToString(r.cloneContents()).length;
+          start = serial.serializeToString(r.cloneContents()).length;
+          end = start + range;
 
-          scope.paragraph.add_range(new Range({ start: start, end: end, range: range }));
+          if(range <= content.length) {
+            scope.paragraph.add_range(new Range({ start: start, end: end, range: range }));
+          }
         }
         scope.mode = Parser.HIGHLIGHT;
       })
