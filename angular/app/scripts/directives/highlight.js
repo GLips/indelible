@@ -7,19 +7,25 @@ myModule.directive('highlight', function($document, Marks, Parser, Range) {
     link: function($scope, $element) {
 
       $element.mousedown(function() {
-        var selection = window.getSelection(),
-          scope = angular.element($element).scope();
+        var scope = angular.element($element).scope();
         scope.mode = Parser.NEW;
-        this.el = $element;
       });
 
       $element.mouseup(function() {
         var selection = window.getSelection(),
-          scope = angular.element($element).scope();
+          scope = angular.element($element).scope(),
+          html_length = new XMLSerializer().serializeToString(selection.getRangeAt(0).cloneContents()).length;
         if(selection.type == "Range" && angular.isDefined(scope.paragraph)) {
           var start = (selection.anchorOffset < selection.focusOffset) ? selection.anchorOffset : selection.focusOffset,
-            end = (selection.anchorOffset > selection.focusOffset) ? selection.anchorOffset : selection.focusOffset;
-          scope.paragraph.add_range(new Range({ start: start, end: end, range: (end - start) }));
+            r = selection.getRangeAt(0).cloneRange(),
+            range = html_length,
+            end;
+
+          r.setStart(r.endContainer, 0);
+          r.setEnd(r.endContainer, start);
+          start = new XMLSerializer().serializeToString(r.cloneContents()).length;
+
+          scope.paragraph.add_range(new Range({ start: start, end: end, range: range }));
         }
         scope.mode = Parser.HIGHLIGHT;
       })
