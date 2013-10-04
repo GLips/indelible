@@ -9,11 +9,11 @@ myModule.factory ('Paragraphs', function(Paragraph, Collection, Maps) {
   paragraphs.prototype.max_word_count = 0;
   paragraphs.prototype.last_word_length = 0;
 
-  paragraphs.prototype.data = [
-    new Paragraph({ content: 'This is the first paragraph\'s content', order: 1, name: 'e17c' }),
-    new Paragraph({ content: 'Paragraph #2', order: 2, 'name': 'fa59' }),
-    new Paragraph({ content: 'oneword', order: 3, 'name': 'abc0' })
-  ];
+  paragraphs.prototype.data = [ new Paragraph() ];
+
+  paragraphs.prototype.init = function() {
+    this.data = [ new Paragraph() ];
+  }
 
   paragraphs.prototype.add_character = function(c) {
     this.data[this.data.length - 1].add_character(c);

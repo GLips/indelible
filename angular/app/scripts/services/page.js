@@ -5,11 +5,12 @@ var myModule = angular.module('indelibleApp.services');
 myModule.factory ('Page', function($resource, Maps, Session, Paragraphs, Marks) {
   var page = $resource(apiPrefix + '/pages/:id', {id: '@id'}, { update: { method: 'PUT' } });
 
-  page.prototype.paragraphs = [];
+  page.prototype.paragraphs = new Paragraphs();
   page.prototype.marks = Marks;
 
   page.prototype.init = function() {
     this.paragraphs = new Paragraphs();
+    this.paragraphs.init();
     this.paragraphs.calculate_word_count();
   }
 
