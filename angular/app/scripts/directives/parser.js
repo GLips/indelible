@@ -14,7 +14,11 @@ myModule.directive('parser', function($compile, Parser) {
         $scope.mode = ($scope.mode) ? $scope.mode : Parser.HIGHLIGHT;
         $element.html('');
         $scope.page.paragraphs.data.forEach(function(p, index) {
-          $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight></p>");
+          if(index == $scope.page.paragraphs.data.length - 1) {
+            $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight data-last-paragraph='true'></p>");
+          } else {
+            $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight></p>");
+          }
         });
         $compile($element.contents())($scope);
       }

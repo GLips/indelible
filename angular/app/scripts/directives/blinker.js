@@ -3,9 +3,7 @@
 var myModule = angular.module('indelibleApp');
 
 myModule.directive('blinker', function($timeout) {
-  return {
-    scope: { active: '=blinker' },
-    link: function($scope, elm) {
+  return function($scope, elm) {
       var timeoutId,
         shown = false;
 
@@ -17,7 +15,7 @@ myModule.directive('blinker', function($timeout) {
       }
 
       function blink() {
-        if(shown || !$scope.active)
+        if(shown)
         {
           elm.css('visibility', 'hidden');
         }
@@ -33,7 +31,6 @@ myModule.directive('blinker', function($timeout) {
       });
 
       init();
-    }
   };
 });
 

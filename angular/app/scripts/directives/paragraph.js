@@ -6,7 +6,8 @@ myModule.directive('paragraph', function($compile, Parser) {
   return {
     scope: {
       paragraph: '=paragraph',
-      mode: '=?mode'
+      mode: '=?mode',
+      last: '=?lastParagraph'
     },
     link: function($scope, $element) {
       $scope.mode = ($scope.mode) ? $scope.mode : Parser.HIGHLIGHT;
@@ -26,6 +27,11 @@ myModule.directive('paragraph', function($compile, Parser) {
           }
 
           $element.append(clean.slice(last_point, clean.length));
+          console.log("Here", $scope.last);
+          if($scope.last) {
+            $element.append("<wbr><span class='editor-cursor' data-blinker>|</span>");
+          }
+          $compile($element.contents())($scope);
         }
       }
       $scope.$watch('paragraph.content', function(){ $scope.rebuild(); });
