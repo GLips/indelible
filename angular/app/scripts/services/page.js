@@ -19,7 +19,7 @@ myModule.factory ('Page', function($resource, Maps, Session, Paragraphs, Marks) 
 
   page.prototype.add_character = function(c) {
     if(this.new || this.is_owned_by_current_user()) {
-		  this.paragraphs.add_character(c);
+      this.paragraphs.add_character(c);
     }
   }
 
@@ -35,12 +35,16 @@ myModule.factory ('Page', function($resource, Maps, Session, Paragraphs, Marks) 
     return (this.is_public) ? 'public' : 'private';
   }
 
-	page.prototype.get_word_count = function() {
+  page.prototype.get_word_count = function() {
     return this.paragraphs.word_count;
-	}
+  }
 
   page.prototype.calculate_word_count = function() {
     return this.paragraphs.calculate_word_count();
+  }
+
+  page.prototype.new_paragraph = function() {
+    this.paragraphs.new_paragraph();
   }
 
   return page;

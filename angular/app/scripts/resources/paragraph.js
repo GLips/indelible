@@ -47,6 +47,10 @@ myModule.factory ('Paragraph', function($resource, Maps) {
     return this.content == "";
   }
 
+  paragraph.prototype.has_content = function() {
+    return this.content != "";
+  }
+
   paragraph.prototype.sort_marks = function() {
     this.marks.sort(function(a, b) {
       if(a.start < b.start)

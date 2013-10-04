@@ -27,7 +27,6 @@ myModule.directive('paragraph', function($compile, Parser) {
           }
 
           $element.append(clean.slice(last_point, clean.length));
-          console.log("Here", $scope.last);
           if($scope.last) {
             $element.append("<wbr><span class='editor-cursor' data-blinker>|</span>");
           }

@@ -16,9 +16,9 @@ myModule.directive('textarea', function($document, Typertimer, Maps, Session) {
         if(key === 8)
         {
           $scope.page.try_backspace()
-        }
-        else
-        {
+        } else if(key === 13) {
+          $scope.page.new_paragraph();
+        } else {
           character = Maps.getKey(key);
         }
 

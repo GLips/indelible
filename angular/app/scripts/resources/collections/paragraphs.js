@@ -35,6 +35,13 @@ myModule.factory ('Paragraphs', function(Paragraph, Collection, Maps) {
     return this.data[this.data.length - 1];
   }
 
+  paragraphs.prototype.new_paragraph = function() {
+    // We don't do blank paragraphs on blank paragraphs.
+    if(this.last_paragraph().has_content()) {
+      this.data.push(new Paragraph({ content: '', order: this.data.length }))
+    }
+  }
+
   paragraphs.prototype.calculate_word_count = function() {
     var last_word_length = this.last_word_length,
       word_count = 0,
