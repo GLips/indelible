@@ -63,6 +63,7 @@ myModule.factory ('Paragraph', function($resource, Maps) {
 
   paragraph.prototype.delete_word = function() {
     this.content = this.content.substr(0, this.content.length - this.last_word_length);
+    this.update_marks();
   }
 
   paragraph.prototype.delete_whitespace = function() {
@@ -74,10 +75,22 @@ myModule.factory ('Paragraph', function($resource, Maps) {
       if(content.substr(content.length - w.length) === w)
       {
         this.content = content.substr(0, content.length - w.length);
+        this.update_marks();
         return true;
       }
     }
     return false;
+  }
+
+  paragraph.prototype.update_marks = function() {
+    console.log(this.marks);
+    var last_mark = this.marks[this.marks.length - 1];
+    last_mark.end = (last_mark.end > this.content.length) ? this.content.length : last_mark.end;
+    last_mark.range = last_mark.end - last_mark.start;
+    if(last_mark.range <= 0) {
+      this.remove_range(last_mark);
+    }
+    console.log(this.marks);
   }
 
   return paragraph;
