@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 	has_one :subscription
 
 	def page_summaries
-		pages.select('id, LEFT(content, 150) AS content, is_public, user_id, created_at, updated_at')
+		pages.select('pages.id, pages.is_public, pages.user_id, pages.created_at, pages.updated_at, paragraphs.content as content').joins(:paragraphs).where(paragraphs: {order: 1})
 	end
 
 	def cancel_subscription

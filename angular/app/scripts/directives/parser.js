@@ -13,13 +13,15 @@ myModule.directive('parser', function($compile, Parser) {
       $scope.rebuild = function() {
         $scope.mode = ($scope.mode) ? $scope.mode : Parser.HIGHLIGHT;
         $element.html('');
-        $scope.page.paragraphs.data.forEach(function(p, index) {
-          if(index == $scope.page.paragraphs.data.length - 1) {
-            $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight data-last-paragraph='true'></p>");
-          } else {
-            $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight></p>");
-          }
-        });
+        if(angular.isDefined($scope.page)) {
+          $scope.page.paragraphs.data.forEach(function(p, index) {
+            if(index == $scope.page.paragraphs.data.length - 1) {
+              $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight data-last-paragraph='true'></p>");
+            } else {
+              $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight></p>");
+            }
+          });
+        }
         $compile($element.contents())($scope);
       }
 

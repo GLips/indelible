@@ -83,14 +83,12 @@ myModule.factory ('Paragraph', function($resource, Maps) {
   }
 
   paragraph.prototype.update_marks = function() {
-    console.log(this.marks);
     var last_mark = this.marks[this.marks.length - 1];
     last_mark.end = (last_mark.end > this.content.length) ? this.content.length : last_mark.end;
     last_mark.range = last_mark.end - last_mark.start;
     if(last_mark.range <= 0) {
       this.remove_range(last_mark);
     }
-    console.log(this.marks);
   }
 
   return paragraph;

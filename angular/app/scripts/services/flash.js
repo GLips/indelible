@@ -21,8 +21,14 @@ angular.module('indelibleApp.services').service('Flash', function() {
     return (typeof flashObject != 'undefined' && (typeof flashObject.errors != 'undefined' || typeof flashObject.successes != 'undefined' || typeof flashObject.alerts != 'undefined'))
   }
 
-  this.errors = function() { return (typeof this.data.errors != 'undefined'); };
-  this.no_errors = function() { return !this.errors(); };
+  this.errors = function(data) {
+    if(angular.isDefined(data)) {
+      return angular.isDefined(data.flashes.errors);
+    } else {
+      return angular.isDefined(this.data.errors);
+    }
+  };
+  this.no_errors = function(data) { return !this.errors(data); };
 
   this.successes = function() { return (typeof this.data.successes != 'undefined'); };
   this.no_successes = function() { return !this.successes(); };

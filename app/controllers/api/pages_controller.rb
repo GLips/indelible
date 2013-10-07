@@ -11,7 +11,7 @@ class Api::PagesController < ApplicationController
 
 	def show
 		if (signed_in? && @page.user_id == current_user.id) || @page.is_public
-			render json: { page: @page }
+			render json: { page: { id: @page.id, paragraphs: @page.paragraphs, user_id: @page.user_id } }
 		else
 			add_error 'This page is not public and you don\'t own it.'
 			render json: {}
@@ -37,7 +37,7 @@ class Api::PagesController < ApplicationController
 			@page.errors.full_messages.each do |m|
 				add_error m
 			end
-			render json: { page: @page }
+			render json: { page: { id: @page.id, paragraphs: @page.paragraphs, user_id: @page.user_id } }
 		end
 	end
 
@@ -59,6 +59,6 @@ class Api::PagesController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def page_params
-		params.require(:page).permit(:content, :title, :is_public)
+		params.require(:page).permit(:is_public, paragraphs_attributes: [:id, :content, :order, marks: [:id, :start, :end, :range]])
 	end
 end

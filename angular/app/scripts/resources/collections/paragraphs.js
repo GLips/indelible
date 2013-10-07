@@ -9,10 +9,10 @@ myModule.factory ('Paragraphs', function(Paragraph, Collection, Maps) {
   paragraphs.prototype.max_word_count = 0;
   paragraphs.prototype.last_word_length = 0;
 
-  paragraphs.prototype.data = [ new Paragraph() ];
+  paragraphs.prototype.data = [];
 
   paragraphs.prototype.init = function() {
-    this.data = [ new Paragraph() ];
+    this.data = [];
   }
 
   paragraphs.prototype.add_character = function(c) {
@@ -37,9 +37,13 @@ myModule.factory ('Paragraphs', function(Paragraph, Collection, Maps) {
 
   paragraphs.prototype.new_paragraph = function() {
     // We don't do blank paragraphs on blank paragraphs.
-    if(this.last_paragraph().has_content()) {
-      this.data.push(new Paragraph({ content: '', order: this.data.length }))
+    if(this.data.length == 0 || this.last_paragraph().has_content()) {
+      this.add_paragraph({ content: '', order: this.data.length + 1 })
     }
+  }
+
+  paragraphs.prototype.add_paragraph = function(data) {
+    this.data.push(new Paragraph(data));
   }
 
   paragraphs.prototype.calculate_word_count = function() {

@@ -29,8 +29,8 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
     Page.get({id: $routeParams.id}, function(data) {
       if(Flash.no_errors())
       {
-        $scope.page = new Page(data.page);
-				$scope.page.init();
+        $scope.page = new Page(data.page);//new Page({id: data.page.id, paragraphs: data.page.paragraphs});
+        $scope.page.init();
         $scope.total_words = $scope.page.get_word_count();
         $scope.word_count = 0;
       }
@@ -45,6 +45,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.create = function() {
     var word_count = $scope.get_approximate_word_count();
+    Flash.clear();
     $scope.page.$save(function(data) {
       $scope.page = new Page(data.page);
       if(Flash.no_errors())
@@ -60,6 +61,7 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
 
   $scope.update = function() {
     var word_count = $scope.get_approximate_word_count();
+    Flash.clear();
     $scope.page.$update(function(data) {
       if(Flash.no_errors())
       {
@@ -69,6 +71,9 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
         var verb = (data.is_public) ? "Published" : "Stored";
         Page.saved_message = verb +" "+ $scope.total_words +" words";
         Flash.hold();
+      } else {
+        $scope.page = new Page(data.page);
+        console.log($scope.page);
       }
     }, function(error) { console.log('Update error: ' + error); });
   };

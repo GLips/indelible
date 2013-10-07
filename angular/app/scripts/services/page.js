@@ -2,15 +2,71 @@
 
 var myModule = angular.module('indelibleApp.services');
 
-myModule.factory ('Page', function($resource, Maps, Session, Paragraphs, Marks) {
-  var page = $resource(apiPrefix + '/pages/:id', {id: '@id'}, { update: { method: 'PUT' } });
+myModule.factory ('Page', function($resource, $http, Maps, Session, Paragraphs, Flash) {
+  var page = $resource(apiPrefix + '/pages/:id', {id: '@id'}, {
+    update: {
+      method: 'PUT',
+      transformRequest: [function(data) {
+        return {
+          page: {
+            id: data.id,
+            paragraphs_attributes: data.paragraphs.data,
+            is_public: data.is_public
+          }
+        }
+      }].concat($http.defaults.transformRequest),
+      transformResponse: [function(data) {
+        var data = angular.fromJson(data);
+        var paragraphs = new Paragraphs();
+        paragraphs.init();
+
+        // Update failed
+        if(Flash.errors(data)) {
+          data.page.paragraphs.forEach(function(p, idx) {
+            paragraphs.add_paragraph(p);
+          });
+          data.page.paragraphs = paragraphs;
+        }
+        return data;
+      }].concat($http.defaults.transformResponse)
+    },
+    save: {
+      method: 'POST',
+      transformRequest: [function(data) {
+        return {
+          page: {
+            paragraphs_attributes: data.paragraphs.data,
+            is_public: data.is_public
+          }
+        }
+      }].concat($http.defaults.transformRequest)
+    },
+    get: {
+      method: 'GET',
+      transformResponse: [function(data) {
+        var data = angular.fromJson(data);
+        var paragraphs = new Paragraphs();
+        paragraphs.init();
+
+        // Not the index page
+        if(Flash.no_errors(data) && angular.isUndefined(data.pages)) {
+          data.page.paragraphs.forEach(function(p, idx) {
+            paragraphs.add_paragraph(p);
+          });
+          data.page.paragraphs = paragraphs;
+        }
+        return data;
+      }].concat($http.defaults.transformResponse)
+    }
+  });
 
   page.prototype.paragraphs = new Paragraphs();
-  page.prototype.marks = Marks;
+//  page.prototype.marks = Marks;
 
   page.prototype.init = function() {
-    this.paragraphs = new Paragraphs();
-    this.paragraphs.init();
+    if(this.paragraphs.data.length == 0) {
+      this.paragraphs.new_paragraph();
+    }
     this.paragraphs.calculate_word_count();
   }
 
@@ -53,4 +109,4 @@ myModule.factory ('Page', function($resource, Maps, Session, Paragraphs, Marks) 
 
 
 
-myModule.$inject = ['$resource', 'Maps', 'Session', 'Paragraphs'];
+myModule.$inject = ['$resource', '$http', 'Maps', 'Session', 'Paragraphs', 'Flash'];

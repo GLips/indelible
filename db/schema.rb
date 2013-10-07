@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916015637) do
+ActiveRecord::Schema.define(version: 20131006184857) do
 
   create_table "pages", force: true do |t|
     t.text     "content"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20130916015637) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_public",  default: false
+  end
+
+  create_table "paragraphs", force: true do |t|
+    t.text     "content"
+    t.integer  "page_id"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "subscriptions", force: true do |t|
