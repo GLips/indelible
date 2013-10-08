@@ -16,9 +16,9 @@ myModule.directive('parser', function($compile, Parser) {
         if(angular.isDefined($scope.page)) {
           $scope.page.paragraphs.data.forEach(function(p, index) {
             if(index == $scope.page.paragraphs.data.length - 1) {
-              $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight data-last-paragraph='true'></p>");
+              $element.append("<p data-paragraph='page.paragraphs.data["+ index  +"]' data-last-paragraph='true'></p>");
             } else {
-              $element.append("<p name='"+ p.name +"' data-paragraph='page.paragraphs.data["+ index  +"]' data-highlight></p>");
+              $element.append("<p data-paragraph='page.paragraphs.data["+ index  +"]'></p>");
             }
           });
         }

@@ -61,13 +61,17 @@ myModule.factory ('Page', function($resource, $http, Maps, Session, Paragraphs, 
   });
 
   page.prototype.paragraphs = new Paragraphs();
-//  page.prototype.marks = Marks;
 
   page.prototype.init = function() {
     if(this.paragraphs.data.length == 0) {
       this.paragraphs.new_paragraph();
     }
     this.paragraphs.calculate_word_count();
+  }
+
+  page.prototype.clear = function() {
+    this.paragraphs = new Paragraphs();
+    this.paragraphs.init();
   }
 
   page.prototype.is_owned_by_current_user = function() {
