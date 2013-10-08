@@ -11,7 +11,7 @@ class Api::PagesController < ApplicationController
 
 	def show
 		if (signed_in? && @page.user_id == current_user.id) || @page.is_public
-			render json: { page: { id: @page.id, paragraphs: @page.paragraphs, user_id: @page.user_id } }
+			render json: { page: { id: @page.id, paragraphs: @page.paragraphs, user_id: @page.user_id, is_public: @page.is_public } }
 		else
 			add_error 'This page is not public and you don\'t own it.'
 			render json: {}
@@ -37,7 +37,7 @@ class Api::PagesController < ApplicationController
 			@page.errors.full_messages.each do |m|
 				add_error m
 			end
-			render json: { page: { id: @page.id, paragraphs: @page.paragraphs, user_id: @page.user_id } }
+			render json: { page: { id: @page.id, paragraphs: @page.paragraphs, user_id: @page.user_id, is_public: @page.is_public } }
 		end
 	end
 
