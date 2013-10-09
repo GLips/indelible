@@ -39,3 +39,5 @@ myModule.directive('paragraph', function($compile, Parser) {
     }
   };
 });
+
+myModule.$inject = ['$compile', 'Parser'];

@@ -13,6 +13,8 @@ myModule.factory('FlashInterceptor', function($q, Flash) {
   };
 });
 
+myModule.$inject = ['$q', 'Flash'];
+
 myModule.config(function($httpProvider) {
   $httpProvider.responseInterceptors.push('FlashInterceptor');
 });
