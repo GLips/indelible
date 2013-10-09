@@ -48,4 +48,4 @@ myModule.service('Marks', function($http, $resource) {
 
 });
 
-myModule.$injext = ['$http', '$resource'];
+myModule.$inject = ['$http', '$resource'];
