@@ -10,7 +10,9 @@ myModule.controller('MainController', function ($scope, $location, $rootScope, P
       }
       else
       {
-        $scope.page = new Page({ content: '', new: true });
+        $scope.page = new Page({new: true});
+        $scope.page.clear();
+        $scope.page.init();
         $analytics.eventTrack("View landing page");
       }
   });
