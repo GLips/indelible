@@ -6,6 +6,8 @@ class CreateParagraphs < ActiveRecord::Migration
       t.integer :order
 
       t.timestamps
-    end
+		end
+
+		add_index :paragraphs, :page_id
   end
 end
