@@ -27,7 +27,7 @@ myModule.directive('paragraph', function($compile, Parser) {
           }
 
           $element.append(clean.slice(last_point, clean.length));
-          if($scope.last) {
+          if($scope.last && $scope.$parent.page.is_owned_by_current_user()) {
             $element.append("<wbr><span class='editor-cursor' data-blinker>|</span>");
           }
           $compile($element.contents())($scope);
