@@ -5,7 +5,7 @@ myModule.controller('SessionsController', function($scope, Flash, $location, $co
   $scope.session = Session.userSession;
 
   $scope.create = function() {
-
+    Flash.clear();
     if ( Session.loggedOut ) {
       $scope.session.$save()
         .success(function(data, status, headers, config) {
