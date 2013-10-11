@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :paragraph do
-    content "MyText"
-    page_id 1
-    order 1
+		sequence(:content) {|n| "Paragraph ##{n}!" }
+		sequence(:order) {|n| n }
+    page
   end
 end

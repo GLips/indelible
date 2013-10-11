@@ -7,11 +7,11 @@ describe Page do
 	subject { page }
 
 	it { should respond_to :user }
-	its(:user)   { should == user }
+	its(:user)   { should be user }
 
 
-	describe 'when content is less than 20 characters' do
-		before { page.content = 'x'*19 }
+	describe 'when not associated with a user' do
+		before { page.user_id = nil }
 		it { should_not be_valid }
 	end
 end

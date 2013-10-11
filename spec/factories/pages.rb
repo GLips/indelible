@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :page do
-		content	'Test content for a page written in Indelible.'
 		user
   end
 end
