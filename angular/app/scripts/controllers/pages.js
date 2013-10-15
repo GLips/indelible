@@ -48,7 +48,6 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
     var word_count = $scope.get_approximate_word_count();
     Flash.clear();
     $scope.page.$save(function(data) {
-      $scope.page = new Page(data.page);
       if(Flash.no_errors())
       {
         $analytics.eventTrack("New Page", { word_count: word_count });
@@ -56,6 +55,8 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
         Page.saved_page = data.saved_page;
         Page.saved_message = "Stored "+ $scope.total_words +" words";
         Flash.hold();
+      } else {
+        $scope.page = new Page(data.page);
       }
     });
   };
@@ -74,7 +75,6 @@ myModule.controller('PagesController', function($scope, $location, $route, $rout
         Flash.hold();
       } else {
         $scope.page = new Page(data.page);
-        console.log($scope.page);
       }
     }, function(error) { console.log('Update error: ' + error); });
   };

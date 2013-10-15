@@ -39,7 +39,21 @@ myModule.factory ('Page', function($resource, $http, Maps, Session, Paragraphs, 
             is_public: data.is_public
           }
         };
-      }].concat($http.defaults.transformRequest)
+      }].concat($http.defaults.transformRequest),
+      transformResponse: [function(data) {
+        data = angular.fromJson(data);
+        var paragraphs = new Paragraphs();
+        paragraphs.init();
+
+        // Update failed
+        if(Flash.errors(data)) {
+          data.page.paragraphs.forEach(function(p) {
+            paragraphs.add_paragraph(p);
+          });
+          data.page.paragraphs = paragraphs;
+        }
+        return data;
+      }].concat($http.defaults.transformResponse)
     },
     get: {
       method: 'GET',

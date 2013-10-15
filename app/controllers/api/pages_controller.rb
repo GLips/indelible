@@ -26,7 +26,7 @@ class Api::PagesController < ApplicationController
 			@page.errors.full_messages.each do |m|
 				add_error m
 			end
-			render json: { page: @page }
+			render json: { page: { paragraphs: @page.paragraphs, user_id: @page.user_id, is_public: @page.is_public } }
 		end
 	end
 
