@@ -15,7 +15,6 @@ class MoveToParagraphModel < ActiveRecord::Migration
 						paragraphs = page.content.split(/(?:<br>)+/)
 						paragraphs.each_with_index do |para, idx|
 							if para.is_a? String
-								puts "#{para} at index #{idx}"
 								page.paragraphs.create({ order: idx + 1, content: para })
 							end
 						end

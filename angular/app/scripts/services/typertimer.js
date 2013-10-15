@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('indelibleApp.services').service('Typertimer', function() {
 
   this.last_update = 0;
@@ -13,8 +15,9 @@ angular.module('indelibleApp.services').service('Typertimer', function() {
 
   this.percent = function() {
     var num = (this.getTime() - this.last_update) / this.limit;
-    if (num > 1)
+    if (num > 1) {
       num = 1;
+    }
     return num;
   };
 

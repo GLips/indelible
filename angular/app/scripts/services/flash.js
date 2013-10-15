@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('indelibleApp.services').service('Flash', function() {
 
   this.types = ['errors', 'successes', 'alerts']

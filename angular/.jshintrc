@@ -3,9 +3,9 @@
   "browser": true,
   "esnext": true,
   "bitwise": true,
-  "camelcase": true,
+  "camelcase": false,
   "curly": true,
-  "eqeqeq": true,
+  "eqeqeq": false,
   "immed": true,
   "indent": 2,
   "latedef": true,
@@ -17,7 +17,7 @@
   "unused": true,
   "strict": true,
   "trailing": true,
-  "smarttabs": true,
+  "smarttabs": false,
   "globals": {
     "angular": false
   }

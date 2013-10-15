@@ -1,3 +1,5 @@
+'use strict';
+
 var myModule = angular.module('indelibleApp.resources');
 myModule.factory('UserSession', function($http, Flash) {
 
