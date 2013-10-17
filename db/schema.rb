@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131007032503) do
+ActiveRecord::Schema.define(version: 20131017044117) do
 
   create_table "pages", force: true do |t|
-    t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
